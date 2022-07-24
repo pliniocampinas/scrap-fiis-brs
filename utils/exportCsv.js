@@ -1,18 +1,19 @@
 const fs = require('fs')
 
-function convertToCSV(objArray, delimiter = ',') {
-  var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray
+function convertToCSV(objArray, delimiter = ';') {
+  const objArrayWithHeaders = [Object.keys(objArray[0]), ...objArray]
+  var array = typeof objArrayWithHeaders != 'object' ? JSON.parse(objArrayWithHeaders) : objArrayWithHeaders
   var str = ''
 
   for (var i = 0; i < array.length; i++) {
-      var line = ''
-      for (var index in array[i]) {
-          if (line != '') line += delimiter
+    var line = ''
+    for (var index in array[i]) {
+      if (line != '') line += delimiter
 
-          line += array[i][index]
-      }
+      line += array[i][index]
+    }
 
-      str += line + '\r\n'
+    str += line + '\r\n'
   }
 
   return str
