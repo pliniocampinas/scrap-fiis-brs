@@ -45,7 +45,7 @@ module.exports = {
       return assets
     }, {})
 
-    exportCsv.export("./scrapped-content/assets-location.csv", assetsLocation, item => JSON.stringify(item))
+    exportCsv.export("./scrapped-content/assets-location.csv", assetsLocation)
 
     await browser.close()
   }
