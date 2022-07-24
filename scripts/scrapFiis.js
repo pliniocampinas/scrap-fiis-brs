@@ -3,7 +3,7 @@ const exportCsv = require('../utils/exportCsv')
 
 module.exports = {
   async run() {
-    console.log('Buscando dados...')
+    console.log('Scrapping data...')
     const browser = await puppeteer.launch({
       args: [
          '--disable-web-security'
@@ -14,7 +14,7 @@ module.exports = {
 
     // Site
     const baseUrl = 'https://www.fundsexplorer.com.br/funds/rbrp11'
-    console.log('Navegando para ', baseUrl)
+    console.log('Navigating to ', baseUrl)
     await page.goto(baseUrl)
 
     await page.waitForSelector('#fund-actives-items-wrapper .funds-data')

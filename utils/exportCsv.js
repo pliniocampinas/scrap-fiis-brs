@@ -1,13 +1,13 @@
 const fs = require('fs')
 
-function convertToCSV(objArray, separador = ',') {
+function convertToCSV(objArray, delimiter = ',') {
   var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray
   var str = ''
 
   for (var i = 0; i < array.length; i++) {
       var line = ''
       for (var index in array[i]) {
-          if (line != '') line += separador
+          if (line != '') line += delimiter
 
           line += array[i][index]
       }
@@ -26,7 +26,7 @@ module.exports = {
       if(err) {
         return console.log(err);
       }
-      console.log("Arquivo Salvo!");
+      console.log("File saved!");
     });
   }
 }
