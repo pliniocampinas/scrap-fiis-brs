@@ -1,18 +1,18 @@
-title;address;neighborhood;city;squareMeters
-ED. AMAURI 305;Rua Amauri, 305;Itaim Bibi;São Paulo - SP;2.545,00 m2
-ED. CASTELLO BRANCO;Av. República do Chile, 230;Centro;Rio de Janeiro - RJ;1.065,00 m2
-ED. CELEBRATION;Rua Casa do Ator, 1155;Vila Olímpia;São Paulo - SP;5.590,00 m2
-ED. DELTA PLAZA;Rua Cincinato Braga, 340;Bela Vista;São Paulo - SP;3.856,00 m2
-ED. MARIO GARNERO - TORRE SUL;Av. Brg. Faria Lima, 1461;Jardim Paulistano;São Paulo - SP;2.177,88 m2
-ED. MYKONOS;Rua Gomes de Carvalho, 1356;Vila Olímpia;São Paulo - SP;1.427,00 m2
-ED. VENEZUELA;Rua Venezuela, 43;Jardim Paulista;São Paulo - SP;4.488,00 m2
-GALPÃO FCA;Est. C. R. Pratavieira, nº 650;Jardim Nova Europa;Hortolândia - SP;42.786,00 m2
-GALPÃO IBM;Rod. J. F. Aguirre Proença, km 09;Chácaras Assay;Hortolândia - SP;17.055,00 m2
-GALPÃO KSM;Estrada Mun. Luiz Lopes Neto, nº 21;N/A;Extrema - MG;77.367,00 m2
-GALPÃO TRISOFT;Av. Prof. Vernon Krieble, 455;Iaqui;Itapevi - SP;15.152,00 m2
-GALPÃO VOLKSWAGEN MAN;Rod. Pres. Dutra, km 296;Tecnopolo;Resende - RJ;23.867,00 m2
-GALPÃO WT RBR LOG I;Rod. Presidente Tancredo Neves, km45;N/A;Franco da Rocha - SP;121.769,26 m2
-PRAVDA ALPHAVILLE;Alameda Grajaú, 98;Alphaville Industrial;Barueri - SP;502,00 m2
-RIVER ONE;Rua Gerivatiba, 207;Butantã;São Paulo - SP;23.625,14 m2
-SLB ANIMA;Rua da Consolação, 2320 e 2322;Consolação;São Paulo - SP;586,90 m2
-SLB SOMOS;Av. João Dias, 1645;Santo Amaro;São Paulo - SP;5.405,00 m2
+title;address;neighborhood;squareMeters;city;state
+ED. AMAURI 305;Rua Amauri, 305;Itaim Bibi;2.545,00 m2;São Paulo;SP
+ED. CASTELLO BRANCO;Av. República do Chile, 230;Centro;1.065,00 m2;Rio de Janeiro;RJ
+ED. CELEBRATION;Rua Casa do Ator, 1155;Vila Olímpia;5.590,00 m2;São Paulo;SP
+ED. DELTA PLAZA;Rua Cincinato Braga, 340;Bela Vista;3.856,00 m2;São Paulo;SP
+ED. MARIO GARNERO - TORRE SUL;Av. Brg. Faria Lima, 1461;Jardim Paulistano;2.177,88 m2;São Paulo;SP
+ED. MYKONOS;Rua Gomes de Carvalho, 1356;Vila Olímpia;1.427,00 m2;São Paulo;SP
+ED. VENEZUELA;Rua Venezuela, 43;Jardim Paulista;4.488,00 m2;São Paulo;SP
+GALPÃO FCA;Est. C. R. Pratavieira, nº 650;Jardim Nova Europa;42.786,00 m2;Hortolândia;SP
+GALPÃO IBM;Rod. J. F. Aguirre Proença, km 09;Chácaras Assay;17.055,00 m2;Hortolândia;SP
+GALPÃO KSM;Estrada Mun. Luiz Lopes Neto, nº 21;N/A;77.367,00 m2;Extrema;MG
+GALPÃO TRISOFT;Av. Prof. Vernon Krieble, 455;Iaqui;15.152,00 m2;Itapevi;SP
+GALPÃO VOLKSWAGEN MAN;Rod. Pres. Dutra, km 296;Tecnopolo;23.867,00 m2;Resende;RJ
+GALPÃO WT RBR LOG I;Rod. Presidente Tancredo Neves, km45;N/A;121.769,26 m2;Franco da Rocha;SP
+PRAVDA ALPHAVILLE;Alameda Grajaú, 98;Alphaville Industrial;502,00 m2;Barueri;SP
+RIVER ONE;Rua Gerivatiba, 207;Butantã;23.625,14 m2;São Paulo;SP
+SLB ANIMA;Rua da Consolação, 2320 e 2322;Consolação;586,90 m2;São Paulo;SP
+SLB SOMOS;Av. João Dias, 1645;Santo Amaro;5.405,00 m2;São Paulo;SP

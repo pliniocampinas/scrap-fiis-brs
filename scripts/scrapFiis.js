@@ -45,7 +45,19 @@ module.exports = {
       return assets
     }, {})
 
-    exportCsv.export("./scrapped-content/assets-location.csv", assetsLocation)
+    exportCsv.export("./scrapped-content/assets-location.csv", assetsLocation.map(asset => {
+
+      const [city, state] = asset.city.split('-').map(i => i.trim())
+
+      return {
+        title: asset.title,
+        address: asset.address,
+        neighborhood: asset.neighborhood,
+        squareMeters: asset.squareMeters,
+        city,
+        state,
+      }
+    }))
 
     await browser.close()
   }
