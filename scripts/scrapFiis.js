@@ -26,11 +26,10 @@ module.exports = {
       document.querySelectorAll('#fund-actives-items-wrapper .items-wrapper:not(:first-child)').forEach((itemWrapper) => {
         const title = itemWrapper.querySelector('.title').innerText
         const listItems = [...itemWrapper.querySelectorAll('li')]
-
-        const address = listItems.find(li => li.innerText.includes('Endereço'))?.innerText
-        const neighborhood = listItems.find(li => li.innerText.includes('Bairro'))?.innerText
-        const city = listItems.find(li => li.innerText.includes('Cidade'))?.innerText
-        const squareMeters = listItems.find(li => li.innerText.includes('Área Bruta'))?.innerText
+        const address = listItems.find(li => li.innerText.includes('Endereço'))?.innerText.replace('Endereço: ', '')
+        const neighborhood = listItems.find(li => li.innerText.includes('Bairro'))?.innerText.replace('Bairro: ', '')
+        const city = listItems.find(li => li.innerText.includes('Cidade'))?.innerText.replace('Cidade: ', '')
+        const squareMeters = listItems.find(li => li.innerText.includes('Área Bruta'))?.innerText.replace('Área Bruta Locável: ', '')
          
         const assetData = {
           title,

@@ -1,17 +1,17 @@
-{"title":"ED. AMAURI 305","address":"Endereço: Rua Amauri, 305","neighborhood":"Bairro: Itaim Bibi","city":"Cidade: São Paulo - SP","squareMeters":"Área Bruta Locável: 2.545,00 m2"}
-{"title":"ED. CASTELLO BRANCO","address":"Endereço: Av. República do Chile, 230","neighborhood":"Bairro: Centro","city":"Cidade: Rio de Janeiro - RJ","squareMeters":"Área Bruta Locável: 1.065,00 m2"}
-{"title":"ED. CELEBRATION","address":"Endereço: Rua Casa do Ator, 1155","neighborhood":"Bairro: Vila Olímpia","city":"Cidade: São Paulo - SP","squareMeters":"Área Bruta Locável: 5.590,00 m2"}
-{"title":"ED. DELTA PLAZA","address":"Endereço: Rua Cincinato Braga, 340","neighborhood":"Bairro: Bela Vista","city":"Cidade: São Paulo - SP","squareMeters":"Área Bruta Locável: 3.856,00 m2"}
-{"title":"ED. MARIO GARNERO - TORRE SUL","address":"Endereço: Av. Brg. Faria Lima, 1461","neighborhood":"Bairro: Jardim Paulistano","city":"Cidade: São Paulo - SP","squareMeters":"Área Bruta Locável: 2.177,88 m2"}
-{"title":"ED. MYKONOS","address":"Endereço: Rua Gomes de Carvalho, 1356","neighborhood":"Bairro: Vila Olímpia","city":"Cidade: São Paulo - SP","squareMeters":"Área Bruta Locável: 1.427,00 m2"}
-{"title":"ED. VENEZUELA","address":"Endereço: Rua Venezuela, 43","neighborhood":"Bairro: Jardim Paulista","city":"Cidade: São Paulo - SP","squareMeters":"Área Bruta Locável: 4.488,00 m2"}
-{"title":"GALPÃO FCA","address":"Endereço: Est. C. R. Pratavieira, nº 650","neighborhood":"Bairro: Jardim Nova Europa","city":"Cidade: Hortolândia - SP","squareMeters":"Área Bruta Locável: 42.786,00 m2"}
-{"title":"GALPÃO IBM","address":"Endereço: Rod. J. F. Aguirre Proença, km 09","neighborhood":"Bairro: Chácaras Assay","city":"Cidade: Hortolândia - SP","squareMeters":"Área Bruta Locável: 17.055,00 m2"}
-{"title":"GALPÃO KSM","address":"Endereço: Estrada Mun. Luiz Lopes Neto, nº 21","neighborhood":"Bairro: N/A","city":"Cidade: Extrema - MG","squareMeters":"Área Bruta Locável: 77.367,00 m2"}
-{"title":"GALPÃO TRISOFT","address":"Endereço: Av. Prof. Vernon Krieble, 455","neighborhood":"Bairro: Iaqui","city":"Cidade: Itapevi - SP","squareMeters":"Área Bruta Locável: 15.152,00 m2"}
-{"title":"GALPÃO VOLKSWAGEN MAN","address":"Endereço: Rod. Pres. Dutra, km 296","neighborhood":"Bairro: Tecnopolo","city":"Cidade: Resende - RJ","squareMeters":"Área Bruta Locável: 23.867,00 m2"}
-{"title":"GALPÃO WT RBR LOG I","address":"Endereço: Rod. Presidente Tancredo Neves, km45","neighborhood":"Bairro: N/A","city":"Cidade: Franco da Rocha - SP","squareMeters":"Área Bruta Locável: 121.769,26 m2"}
-{"title":"PRAVDA ALPHAVILLE","address":"Endereço: Alameda Grajaú, 98","neighborhood":"Bairro: Alphaville Industrial","city":"Cidade: Barueri - SP","squareMeters":"Área Bruta Locável: 502,00 m2"}
-{"title":"RIVER ONE","address":"Endereço: Rua Gerivatiba, 207","neighborhood":"Bairro: Butantã","city":"Cidade: São Paulo - SP","squareMeters":"Área Bruta Locável: 23.625,14 m2"}
-{"title":"SLB ANIMA","address":"Endereço: Rua da Consolação, 2320 e 2322","neighborhood":"Bairro: Consolação","city":"Cidade: São Paulo - SP","squareMeters":"Área Bruta Locável: 586,90 m2"}
-{"title":"SLB SOMOS","address":"Endereço: Av. João Dias, 1645","neighborhood":"Bairro: Santo Amaro","city":"Cidade: São Paulo - SP","squareMeters":"Área Bruta Locável: 5.405,00 m2"}
+{"title":"ED. AMAURI 305","address":"Rua Amauri, 305","neighborhood":"Itaim Bibi","city":"São Paulo - SP","squareMeters":"2.545,00 m2"}
+{"title":"ED. CASTELLO BRANCO","address":"Av. República do Chile, 230","neighborhood":"Centro","city":"Rio de Janeiro - RJ","squareMeters":"1.065,00 m2"}
+{"title":"ED. CELEBRATION","address":"Rua Casa do Ator, 1155","neighborhood":"Vila Olímpia","city":"São Paulo - SP","squareMeters":"5.590,00 m2"}
+{"title":"ED. DELTA PLAZA","address":"Rua Cincinato Braga, 340","neighborhood":"Bela Vista","city":"São Paulo - SP","squareMeters":"3.856,00 m2"}
+{"title":"ED. MARIO GARNERO - TORRE SUL","address":"Av. Brg. Faria Lima, 1461","neighborhood":"Jardim Paulistano","city":"São Paulo - SP","squareMeters":"2.177,88 m2"}
+{"title":"ED. MYKONOS","address":"Rua Gomes de Carvalho, 1356","neighborhood":"Vila Olímpia","city":"São Paulo - SP","squareMeters":"1.427,00 m2"}
+{"title":"ED. VENEZUELA","address":"Rua Venezuela, 43","neighborhood":"Jardim Paulista","city":"São Paulo - SP","squareMeters":"4.488,00 m2"}
+{"title":"GALPÃO FCA","address":"Est. C. R. Pratavieira, nº 650","neighborhood":"Jardim Nova Europa","city":"Hortolândia - SP","squareMeters":"42.786,00 m2"}
+{"title":"GALPÃO IBM","address":"Rod. J. F. Aguirre Proença, km 09","neighborhood":"Chácaras Assay","city":"Hortolândia - SP","squareMeters":"17.055,00 m2"}
+{"title":"GALPÃO KSM","address":"Estrada Mun. Luiz Lopes Neto, nº 21","neighborhood":"N/A","city":"Extrema - MG","squareMeters":"77.367,00 m2"}
+{"title":"GALPÃO TRISOFT","address":"Av. Prof. Vernon Krieble, 455","neighborhood":"Iaqui","city":"Itapevi - SP","squareMeters":"15.152,00 m2"}
+{"title":"GALPÃO VOLKSWAGEN MAN","address":"Rod. Pres. Dutra, km 296","neighborhood":"Tecnopolo","city":"Resende - RJ","squareMeters":"23.867,00 m2"}
+{"title":"GALPÃO WT RBR LOG I","address":"Rod. Presidente Tancredo Neves, km45","neighborhood":"N/A","city":"Franco da Rocha - SP","squareMeters":"121.769,26 m2"}
+{"title":"PRAVDA ALPHAVILLE","address":"Alameda Grajaú, 98","neighborhood":"Alphaville Industrial","city":"Barueri - SP","squareMeters":"502,00 m2"}
+{"title":"RIVER ONE","address":"Rua Gerivatiba, 207","neighborhood":"Butantã","city":"São Paulo - SP","squareMeters":"23.625,14 m2"}
+{"title":"SLB ANIMA","address":"Rua da Consolação, 2320 e 2322","neighborhood":"Consolação","city":"São Paulo - SP","squareMeters":"586,90 m2"}
+{"title":"SLB SOMOS","address":"Av. João Dias, 1645","neighborhood":"Santo Amaro","city":"São Paulo - SP","squareMeters":"5.405,00 m2"}
