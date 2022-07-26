@@ -5,9 +5,19 @@ const readCsv = require('../utils/readCsv')
 const navidateAndScrap = async (page, url) => {
   // Site
   console.log('Navigating to ', url)
-  await page.goto(url)
+  try {
+    await page.goto(url)
+  } catch(e) {
+    console.warn('page.goto Error', e?.message)
+    return []
+  }
 
-  await page.waitForSelector('#fund-actives-items-wrapper .funds-data', {timeout: 2500})
+  try {
+    await page.waitForSelector('#fund-actives-items-wrapper .funds-data', {timeout: 2500})
+  } catch(e) {
+    console.log('waitSelector Error:' + url, e?.message)
+    return []
+  }
 
   const assetsLocation = await page.evaluate(() => {
 
@@ -35,36 +45,36 @@ const navidateAndScrap = async (page, url) => {
     return assets
   }, {})
 
-  exportCsv.export("./scrapped-content/assets-location.csv", assetsLocation.map(asset => {
-
-    const [city, state] = asset.city.split('-').map(i => i.trim())
-
-    return {
-      title: asset.title,
-      address: asset.address,
-      neighborhood: asset.neighborhood,
-      squareMeters: asset.squareMeters,
-      city,
-      state,
-    }
-  }))
+  return assetsLocation
 }
 
 module.exports = {
   async run() {
+    console.log('Loading funds list...')
+    const funds = await readCsv.readAll("./scrapped-content/funds-list.csv")
+
     console.log('Scrapping data...')
     const browser = await puppeteer.launch({
       args: [
          '--disable-web-security'
       ]
     })
-
-    const test = await readCsv.readAll("./scrapped-content/assets-location.csv")
-
     const page = await browser.newPage()
 
-    await navidateAndScrap(page, 'https://www.fundsexplorer.com.br/funds/abcp11')
+    const assetsLocationPerFund = []
+    for (const fund of funds) {
+      const assets = await navidateAndScrap(page, fund.relativeUrl)
+      assets.forEach(asset => {
+        asset.fund = fund.acronym
+        const [city, state] = asset.city.split('-').map(i => i.trim())
+        asset.city = city
+        asset.state = state
+        assetsLocationPerFund.push(asset)
+      })
+    }
 
     await browser.close()
+
+    exportCsv.export("./scrapped-content/assets-location.csv", assetsLocationPerFund)
   }
 }
