@@ -1,5 +1,6 @@
 const scrapFiis = require('./scripts/scrapFiis')
 const scrapAllFunds = require('./scripts/scrapAllFunds')
+const missingFunds = require('./scripts/missingFunds')
 
 const options = [
   {
@@ -11,6 +12,11 @@ const options = [
     value: '2',
     text: 'Scrap Fund\'s assets',
     run: () => scrapFiis.run()
+  },
+  {
+    value: '3',
+    text: 'Verify missing funds',
+    run: () => missingFunds.run()
   },
   {
     value: '0',
