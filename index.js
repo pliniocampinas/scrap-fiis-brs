@@ -1,28 +1,45 @@
 const scrapFiis = require('./scripts/scrapFiis')
 const scrapAllFunds = require('./scripts/scrapAllFunds')
 
+const options = [
+  {
+    value: '1',
+    text: 'Scrap Fund List',
+    run: () => scrapAllFunds.run()
+  },
+  {
+    value: '2',
+    text: 'Scrap Fund\'s assets',
+    run: () => scrapFiis.run()
+  },
+  {
+    value: '0',
+    text: 'Exit',
+    run: () => console.log('Exiting!') || process.exit(0) 
+  },
+]
+
+optionsText = 'Select an action: \n' + options.map(opt => `${opt.value} - ${opt.text}\n`).join('')
+
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: 'Select an action: \n 1 - Scrap Fund List \n 2 - Scrap a Single Fund \n 0 - Exit \n'
-});
+    prompt: optionsText
+})
 
-rl.prompt();
+rl.prompt()
 
 rl.on('line', async (line) => {
-  if (line.toLowerCase() === "exit" || line == "0") {
-    console.log('\nExiting!\n');
-    process.exit(0);        
-  } else if (line.trim() === "1") {
-    await scrapAllFunds.run()
-  } else if (line.trim() === "2") {
-    await scrapFiis.run()
+  const selectedOption = options.find(op => op.value == line.toLowerCase())
+  if(selectedOption) {
+    await selectedOption.run()
   } else {
     console.log(`\n No action \n`)
   }
+  
   rl.prompt();
 }).on('close', () => {
-  console.log('Exiting!');
-  process.exit(0);
-});
+  console.log('Exiting!')
+  process.exit(0)
+})
