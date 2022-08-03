@@ -2,18 +2,26 @@ const puppeteer = require('puppeteer')
 const exportCsv = require('../utils/exportCsv')
 const readCsv = require('../utils/readCsv')
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+
 const navidateAndScrap = async (page, url) => {
   // Site
   console.log('Navigating to ', url)
   try {
     await page.goto(url)
   } catch(e) {
-    console.warn('page.goto Error', e?.message)
-    return []
+    console.warn('page.goto Error, retrying', e?.message)
+    await sleep(1000)
+    try {
+      await page.goto(url)
+    } catch(e) {
+      console.warn('page.goto Error', e?.message)
+      return []
+    }
   }
 
   try {
-    await page.waitForSelector('#fund-actives-items-wrapper .funds-data', {timeout: 2500})
+    await page.waitForSelector('#fund-actives-items-wrapper .funds-data', {timeout: 1500})
   } catch(e) {
     console.log('waitSelector Error:' + url, e?.message)
     return []
@@ -24,12 +32,12 @@ const navidateAndScrap = async (page, url) => {
     const assets = []
 
     document.querySelectorAll('#fund-actives-items-wrapper .items-wrapper:not(:first-child)').forEach((itemWrapper) => {
-      const title = itemWrapper.querySelector('.title').innerText
+      const title = itemWrapper.querySelector('.title').innerText.trim()
       const listItems = [...itemWrapper.querySelectorAll('li')]
-      const address = listItems.find(li => li.innerText.includes('Endereço'))?.innerText.replace('Endereço: ', '')
-      const neighborhood = listItems.find(li => li.innerText.includes('Bairro'))?.innerText.replace('Bairro: ', '')
-      const city = listItems.find(li => li.innerText.includes('Cidade'))?.innerText.replace('Cidade: ', '')
-      const squareMeters = listItems.find(li => li.innerText.includes('Área Bruta'))?.innerText.replace('Área Bruta Locável: ', '')
+      const address = listItems.find(li => li.innerText.includes('Endereço:'))?.innerText.replace('Endereço: ', '').trim()
+      const neighborhood = listItems.find(li => li.innerText.includes('Bairro:'))?.innerText.replace('Bairro: ', '').trim()
+      const city = listItems.find(li => li.innerText.includes('Cidade:'))?.innerText.replace('Cidade: ', '').trim()
+      const squareMeters = listItems.find(li => li.innerText.includes('Área Bruta'))?.innerText.replace('Área Bruta Locável: ', '').trim()
         
       const assetData = {
         title,
@@ -56,7 +64,7 @@ module.exports = {
     console.log('Scrapping data...')
     const browser = await puppeteer.launch({
       args: [
-         '--disable-web-security'
+        '--disable-web-security'
       ]
     })
     const page = await browser.newPage()
