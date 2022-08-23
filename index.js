@@ -45,7 +45,11 @@ rl.prompt()
 rl.on('line', async (line) => {
   const selectedOption = options.find(op => op.value == line.toLowerCase())
   if(selectedOption) {
-    await selectedOption.run()
+    try {
+      await selectedOption.run()
+    } catch(err) {
+      console.log('Unhandled error', err)
+    }
   } else {
     console.log(`\n No action \n`)
   }
