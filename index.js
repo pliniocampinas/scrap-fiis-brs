@@ -2,6 +2,7 @@ const scrapFiis = require('./scripts/scrapFiis')
 const scrapAllFunds = require('./scripts/scrapAllFunds')
 const missingFunds = require('./scripts/missingFunds')
 const testDb = require('./scripts/testDb')
+const initDb = require('./scripts/initDb')
 
 const options = [
   {
@@ -23,6 +24,11 @@ const options = [
     value: '4',
     text: 'Test Db',
     run: () => testDb.run()
+  },
+  {
+    value: '5',
+    text: 'Init Db',
+    run: () => initDb.run()
   },
   {
     value: '0',
