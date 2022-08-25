@@ -6,36 +6,38 @@ const initDb = require('./scripts/initDb')
 
 const options = [
   {
-    value: '1',
     text: 'Scrap Fund List',
     run: () => scrapAllFunds.run()
   },
   {
-    value: '2',
     text: 'Scrap Fund\'s assets',
     run: () => scrapFiis.run()
   },
   {
-    value: '3',
     text: 'Verify missing funds',
     run: () => missingFunds.run()
   },
   {
-    value: '4',
     text: 'Test Db',
     run: () => testDb.run()
   },
   {
-    value: '5',
     text: 'Init Db',
     run: () => initDb.run()
   },
-  {
-    value: '0',
-    text: 'Exit',
-    run: () => console.log('Exiting!') || process.exit(0) 
-  },
-]
+].map((opc, index) => {
+  return {
+    value: (index+1) + '',
+    ...opc
+  }
+})
+
+const exitOption = {
+  value: '0',
+  text: 'Exit',
+  run: () => console.log('Exiting!') || process.exit(0) 
+}
+options.push(exitOption)
 
 optionsText = 'Select an action: \n' + options.map(opt => `${opt.value} - ${opt.text}\n`).join('')
 
