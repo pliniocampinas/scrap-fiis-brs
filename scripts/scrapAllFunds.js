@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer')
 const exportCsv = require('../utils/exportCsv')
+const insertScrappedFundsCommand = require('../commands/insertScrappedFundsCommand')
 
 module.exports = {
   async run() {
@@ -17,13 +18,13 @@ module.exports = {
     console.log('Navigating to ', baseUrl)
     await page.goto(baseUrl)
 
-    await page.waitForSelector('#fiis-list-container .item')
+    await page.waitForSelector('#fiis-list-container .fund-card')
 
     const fundsMetaData = await page.evaluate(() => {
 
       const funds = []
 
-      document.querySelectorAll('#fiis-list-container .item').forEach((itemWrapper) => {
+      document.querySelectorAll('#fiis-list-container .fund-card').forEach((itemWrapper) => {
         const relativeUrl = itemWrapper.querySelector('a').href??'none'
         const acronym = itemWrapper.querySelector('.symbol')?.innerText?.trim()??'none'
         const name = itemWrapper.querySelector('.name')?.innerText?.trim()??'none'
@@ -43,6 +44,7 @@ module.exports = {
     }, {})
 
     exportCsv.export("./scrapped-content/funds-list.csv", fundsMetaData)
+    insertScrappedFundsCommand.execute(fundsMetaData)
 
     await browser.close()
   }
