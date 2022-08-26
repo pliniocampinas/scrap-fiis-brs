@@ -4,7 +4,7 @@ module.exports = {
   async execute(funds) {
     console.log('Inserting to scrapped_funds')
     const sql = `
-      INSERT INTO scrapped_funds (created_on, acronym, relative_url, name, admin)
+      INSERT INTO scrapped_funds (created_on, acronym, url, long_name, admin)
       VALUES ($1, $2, $3, $4, $5);
     `
     const currentDate = new Date()
@@ -13,8 +13,8 @@ module.exports = {
         await connectionPool.query(sql, [
           currentDate,
           fund.acronym,
-          fund.relativeUrl,
-          fund.name,
+          fund.url,
+          fund.longName,
           fund.admin,
         ])
       } catch(err) {

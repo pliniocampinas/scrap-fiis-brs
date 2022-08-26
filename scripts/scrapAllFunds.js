@@ -25,15 +25,15 @@ module.exports = {
       const funds = []
 
       document.querySelectorAll('#fiis-list-container .fund-card').forEach((itemWrapper) => {
-        const relativeUrl = itemWrapper.querySelector('a').href??'none'
-        const acronym = itemWrapper.querySelector('.symbol')?.innerText?.trim()??'none'
-        const name = itemWrapper.querySelector('.name')?.innerText?.trim()??'none'
-        const admin = itemWrapper.querySelector('.admin')?.innerText?.trim()??'none'
+        const url = itemWrapper.querySelector('a').href??''
+        const acronym = itemWrapper.querySelector('.symbol')?.innerText?.trim()??''
+        const longName = itemWrapper.querySelector('.name')?.innerText?.trim()??''
+        const admin = itemWrapper.querySelector('.admin')?.innerText?.trim()??''
 
         const fund = {
-          relativeUrl,
+          url,
           acronym,
-          name,
+          longName,
           admin,
         }
   
