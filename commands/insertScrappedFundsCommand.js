@@ -1,14 +1,25 @@
 const connectionPool = require('../db/connectionPool')
+const Fund = require('../models/Fund')
 
 module.exports = {
-  async execute(funds) {
+  async execute(scrappedFunds) {
     console.log('Inserting to scrapped_funds')
+
     const sql = `
       INSERT INTO scrapped_funds (created_on, acronym, url, long_name, admin)
       VALUES ($1, $2, $3, $4, $5);
     `
     const currentDate = new Date()
-    funds.forEach(async fund => {
+    scrappedFunds.forEach(async scrappedFund => {
+
+      const fund = new Fund(scrappedFund)
+      
+      const validation = fund.validade()
+      if(validation.isValid === false) {
+        console.log('Validation Error', validation.error)
+        return
+      }
+
       try {
         await connectionPool.query(sql, [
           currentDate,
@@ -18,11 +29,11 @@ module.exports = {
           fund.admin,
         ])
       } catch(err) {
-        console.log('Inserting to scrapped_funds failed', fund)
+        console.log('Database error', fund)
         console.log(err)
         return
       }
     });
-    console.warn('Inserted')
+    console.log('Inserted')
   }
 }
