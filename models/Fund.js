@@ -1,16 +1,16 @@
 class Fund {
   constructor(scrap) {
-    this.url = scrap?.url.trim()
-    this.acronym = scrap?.acronym.trim()
-    this.longName = scrap?.longName.trim()
-    this.admin = scrap?.admin.trim()
+    this.url = scrap?.url?.trim()
+    this.acronym = scrap?.acronym?.trim()
+    this.longName = scrap?.longName?.trim()
+    this.admin = scrap?.admin?.trim()
   }
 
   validade() {
-    if(this.acronym === null) {
+    if(this.acronym === null || this.acronym === undefined) {
       return {
         isValid: false,
-        error: 'Acronym cannot be null'
+        error: 'Acronym cannot be null or undefined'
       }
     }
 
