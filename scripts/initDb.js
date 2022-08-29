@@ -33,7 +33,7 @@ const createScrappedAssetsTable = async () => {
       neighborhood TEXT,
       city TEXT,
       state TEXT,
-      square_meters TEXT,
+      square_meters INTEGER,
       created_on TIMESTAMP NOT NULL,
       PRIMARY KEY (sequential, fund_acronym)
     );

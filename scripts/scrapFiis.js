@@ -73,7 +73,7 @@ module.exports = {
     for (const fund of funds) {
       const assets = await navidateAndScrap(page, fund.relativeUrl)
       assets.forEach(asset => {
-        asset.fund = fund.acronym
+        asset.fundAcronym = fund.acronym
         const [city, state] = asset.city.split('-').map(i => i.trim())
         asset.city = city
         asset.state = state
