@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer')
 const exportCsv = require('../utils/exportCsv')
 const readCsv = require('../utils/readCsv')
+const insertScrappedAssetsCommand = require('../commands/insertScrappedAssetsCommand')
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -71,7 +72,7 @@ module.exports = {
 
     const assetsLocationPerFund = []
     for (const fund of funds) {
-      const assets = await navidateAndScrap(page, fund.relativeUrl)
+      const assets = await navidateAndScrap(page, fund.url)
       assets.forEach(asset => {
         asset.fundAcronym = fund.acronym
         const [city, state] = asset.city.split('-').map(i => i.trim())
@@ -79,6 +80,7 @@ module.exports = {
         asset.state = state
         assetsLocationPerFund.push(asset)
       })
+      insertScrappedAssetsCommand.execute(assets)
     }
 
     await browser.close()

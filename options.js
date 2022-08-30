@@ -1,4 +1,4 @@
-const scrapFiis = require('./scripts/scrapFiis')
+const scrapAssets = require('./scripts/scrapAssets')
 const scrapAllFunds = require('./scripts/scrapAllFunds')
 const missingFunds = require('./scripts/missingFunds')
 const testDb = require('./scripts/testDb')
@@ -11,7 +11,7 @@ const options = [
   },
   {
     text: 'Scrap Fund\'s assets',
-    run: () => scrapFiis.run()
+    run: () => scrapAssets.run()
   },
   {
     text: 'Verify missing funds',
