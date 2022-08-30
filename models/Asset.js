@@ -3,14 +3,14 @@ class Asset {
     this.title = scrap.title?.trim()
     this.address = scrap.address?.trim()
     this.neighborhood = scrap.neighborhood?.trim()
-    this.squareMeters = parseInt(scrap.squareMeters?.replace('m2')
-      .replace('.')
-      .replace(',')
+    this.squareMeters = parseInt(scrap.squareMeters?.replace('m2', '')
+      .replace('.', '')
+      .split(',')[0]
       .trim()
     ) || 0
     this.fundAcronym = scrap.fundAcronym?.trim()
     this.city = scrap.city?.trim()
-    this.state = scrap.state?.trim()
+    this.state = scrap.state?.trim().toUpperCase()
   }
 
   validade() {
@@ -35,17 +35,17 @@ class Asset {
       }
     }
 
-    if(this.state.length == 0) {
+    if((this.state?.length || 0) == 0) {
       return {
         isValid: false,
         error: 'State cannot be empty'
       }
     }
 
-    if(this.state.length > 2) {
+    if(this.state.length != 2) {
       return {
         isValid: false,
-        error: 'State cannot be larger than 2 characters'
+        error: 'State should have 2 characters'
       }
     }
 

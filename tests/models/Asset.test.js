@@ -11,10 +11,10 @@ test('Asset constructor should trim values and parse squareMeters to integer', (
   })
   expect(asset.address).toBe('address')
   expect(asset.neighborhood).toBe('neighborhood')
-  expect(asset.squareMeters).toBe('69628')
+  expect(asset.squareMeters).toBe(69628)
   expect(asset.fundAcronym).toBe('fundAcronym')
   expect(asset.city).toBe('city')
-  expect(asset.state).toBe('state')
+  expect(asset.state).toBe('STATE')
 })
 
 test('Fund validate should reject null or undefined fundAcronym values', () => {
@@ -56,14 +56,44 @@ test('Asset validate should reject fundAcronym value larger than 10 characters',
   expect(fundWithLongAcronymValidation.error).toBe('FundAcronym cannot be larger than 10 characters')
 })
 
-// TODO: STATE
-// test('Asset validate should accept fundAcronym value with less than or equal to 10 characters', () => {
-//   const fundWithValidAcronym = new Fund({
-//     acronym: '123456789a',
-//   })
+test('Asset validate should reject state value nullish or empty', () => {
+  const fundWithNoState = new Asset({
+    fundAcronym: '123456789a',
+  })
 
-//   const fundWithValidAcronymValidation = fundWithValidAcronym.validade()
+  const fundWithEmptyState = new Asset({
+    fundAcronym: '123456789a',
+    state: ''
+  })
 
-//   expect(fundWithValidAcronymValidation.isValid).toBe(true)
-//   expect(fundWithValidAcronymValidation.error).toBe(undefined)
-// })
+  const fundWithNoStateValidation = fundWithNoState.validade()
+  const fundWithEmptyStateValidation = fundWithEmptyState.validade()
+
+  expect(fundWithNoStateValidation.isValid).toBe(false)
+  expect(fundWithNoStateValidation.error).toBe('State cannot be empty')
+  expect(fundWithEmptyStateValidation.isValid).toBe(false)
+  expect(fundWithEmptyStateValidation.error).toBe('State cannot be empty')
+})
+
+test('Asset validate should reject state value if length is different than 2', () => {
+  const fundWithInvalidState = new Asset({
+    fundAcronym: '123456789a',
+    state: '1234'
+  })
+
+  const fundWithInvalidStateValidation = fundWithInvalidState.validade()
+
+  expect(fundWithInvalidStateValidation.isValid).toBe(false)
+  expect(fundWithInvalidStateValidation.error).toBe('State should have 2 characters')
+})
+
+test('Asset validate should accept a valid asset', () => {
+  const fundWithInvalidState = new Asset({
+    fundAcronym: '123456789a',
+    state: 'sp'
+  })
+
+  const fundWithInvalidStateValidation = fundWithInvalidState.validade()
+
+  expect(fundWithInvalidStateValidation.isValid).toBe(true)
+})
