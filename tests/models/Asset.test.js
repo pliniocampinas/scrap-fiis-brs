@@ -1,20 +1,27 @@
 const Asset = require('../../models/Asset');
 
-test('Asset constructor should trim values and parse squareMeters to integer', () => {
+test('Asset constructor should trim values, parse squareMeters to integer and set state to UPPER case', () => {
   const asset = new Asset({
     address: '  address  ',
     neighborhood: '  neighborhood  ',
     squareMeters: '  69.628,00 m2  ',
     fundAcronym: '  fundAcronym  ',
-    city: '  city  ',
-    state: '  state  ',
+    cityWithState: '  São Paulo - sp  '
   })
   expect(asset.address).toBe('address')
   expect(asset.neighborhood).toBe('neighborhood')
   expect(asset.squareMeters).toBe(69628)
   expect(asset.fundAcronym).toBe('fundAcronym')
-  expect(asset.city).toBe('city')
-  expect(asset.state).toBe('STATE')
+  expect(asset.city).toBe('São Paulo')
+  expect(asset.state).toBe('SP')
+})
+
+test('Asset constructor should parse city and state properly if city contains hifen', () => {
+  const asset = new Asset({
+    cityWithState: '  Embu-Guaçu - SP  '
+  })
+  expect(asset.city).toBe('Embu-Guaçu')
+  expect(asset.state).toBe('SP')
 })
 
 test('Fund validate should reject null or undefined fundAcronym values', () => {
@@ -63,7 +70,7 @@ test('Asset validate should reject state value nullish or empty', () => {
 
   const fundWithEmptyState = new Asset({
     fundAcronym: '123456789a',
-    state: ''
+    cityWithState: '  São Paulo -  '
   })
 
   const fundWithNoStateValidation = fundWithNoState.validade()
@@ -78,7 +85,7 @@ test('Asset validate should reject state value nullish or empty', () => {
 test('Asset validate should reject state value if length is different than 2', () => {
   const fundWithInvalidState = new Asset({
     fundAcronym: '123456789a',
-    state: '1234'
+    cityWithState: '  São Paulo - sps  '
   })
 
   const fundWithInvalidStateValidation = fundWithInvalidState.validade()
@@ -90,7 +97,7 @@ test('Asset validate should reject state value if length is different than 2', (
 test('Asset validate should accept a valid asset', () => {
   const fundWithInvalidState = new Asset({
     fundAcronym: '123456789a',
-    state: 'sp'
+    cityWithState: '  São Paulo - sp  '
   })
 
   const fundWithInvalidStateValidation = fundWithInvalidState.validade()

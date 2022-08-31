@@ -9,8 +9,19 @@ class Asset {
       .trim()
     ) || 0
     this.fundAcronym = scrap.fundAcronym?.trim()
-    this.city = scrap.city?.trim()
-    this.state = scrap.state?.trim().toUpperCase()
+    this.setCityAndState(scrap.cityWithState)
+  }
+
+  setCityAndState(cityWithState) {
+    const cityAndStateSplitted = cityWithState?.split('-') || []
+    if(cityAndStateSplitted.length > 2) {
+      this.state = cityAndStateSplitted.pop().trim().toUpperCase()
+      this.city = cityAndStateSplitted.join('-').trim()
+    } else {
+      const [city, state] = cityAndStateSplitted
+      this.city = city?.trim()
+      this.state = state?.trim().toUpperCase()
+    }
   }
 
   validade() {

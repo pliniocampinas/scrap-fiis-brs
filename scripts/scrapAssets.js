@@ -37,14 +37,14 @@ const navidateAndScrap = async (page, url) => {
       const listItems = [...itemWrapper.querySelectorAll('li')]
       const address = listItems.find(li => li.innerText.includes('Endereço:'))?.innerText.replace('Endereço: ', '').trim()
       const neighborhood = listItems.find(li => li.innerText.includes('Bairro:'))?.innerText.replace('Bairro: ', '').trim()
-      const city = listItems.find(li => li.innerText.includes('Cidade:'))?.innerText.replace('Cidade: ', '').trim()
+      const cityWithState = listItems.find(li => li.innerText.includes('Cidade:'))?.innerText.replace('Cidade: ', '').trim()
       const squareMeters = listItems.find(li => li.innerText.includes('Área Bruta'))?.innerText.replace('Área Bruta Locável: ', '').trim()
         
       const assetData = {
         title,
         address,
         neighborhood,
-        city,
+        cityWithState,
         squareMeters,
       }
 
@@ -75,9 +75,6 @@ module.exports = {
       const assets = await navidateAndScrap(page, fund.url)
       assets.forEach(asset => {
         asset.fundAcronym = fund.acronym
-        const [city, state] = asset.city.split('-').map(i => i.trim())
-        asset.city = city
-        asset.state = state
         assetsLocationPerFund.push(asset)
       })
       insertScrappedAssetsCommand.execute(assets)
