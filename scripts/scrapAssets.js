@@ -35,10 +35,10 @@ const navidateAndScrap = async (page, url) => {
     document.querySelectorAll('#fund-actives-items-wrapper .items-wrapper:not(:first-child)').forEach((itemWrapper) => {
       const title = itemWrapper.querySelector('.title').innerText.trim()
       const listItems = [...itemWrapper.querySelectorAll('li')]
-      const address = listItems.find(li => li.innerText.includes('Endereço:'))?.innerText.replace('Endereço: ', '').trim()
-      const neighborhood = listItems.find(li => li.innerText.includes('Bairro:'))?.innerText.replace('Bairro: ', '').trim()
-      const cityWithState = listItems.find(li => li.innerText.includes('Cidade:'))?.innerText.replace('Cidade: ', '').trim()
-      const squareMeters = listItems.find(li => li.innerText.includes('Área Bruta'))?.innerText.replace('Área Bruta Locável: ', '').trim()
+      const address = listItems.find(li => li.innerText.includes('Endereço:'))?.innerText.replace('Endereço:', '').trim()
+      const neighborhood = listItems.find(li => li.innerText.includes('Bairro:'))?.innerText.replace('Bairro:', '').trim()
+      const cityWithState = listItems.find(li => li.innerText.includes('Cidade:'))?.innerText.replace('Cidade:', '').trim()
+      const squareMeters = listItems.find(li => li.innerText.includes('Área Bruta'))?.innerText.replace('Área Bruta Locável:', '').trim()
         
       const assetData = {
         title,
