@@ -1,13 +1,13 @@
 const connectionPool = require('../db/connectionPool')
 var fs = require('fs');
 
-const runScript = async (fileName) => {
-  console.log('running script', fileName)
-  var sql = fs.readFileSync(fileName).toString();
+const runScript = async (filePath) => {
+  console.log('running script', filePath)
+  var sql = fs.readFileSync(filePath).toString();
   try {
     await connectionPool.query(sql)
   } catch(err) {
-    console.log('running script', fileName, 'failed')
+    console.log('running script', filePath, 'failed')
     console.log(err)
     return
   }
@@ -16,7 +16,7 @@ const runScript = async (fileName) => {
 module.exports = {
   async run() {
     console.log('initializing tables')
-    await runScript('create_table_scrapped_funds.sql')
-    await runScript('create_table_scrapped_assets.sql')
+    await runScript('./db/create_table_scrapped_funds.sql')
+    await runScript('./db/create_table_scrapped_assets.sql')
   }
 }
