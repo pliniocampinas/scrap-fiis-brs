@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 const exportCsv = require('../utils/exportCsv')
-const readCsv = require('../utils/readCsv')
 const insertScrappedAssetsCommand = require('../commands/insertScrappedAssetsCommand')
+const getScrappedFundsQuery = require('../queries/getScrappedFundsQuery')
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -60,7 +60,8 @@ const navidateAndScrap = async (page, url) => {
 module.exports = {
   async run() {
     console.log('Loading funds list...')
-    const funds = await readCsv.readAll("./scrapped-content/funds-list.csv")
+    
+    const funds = await getScrappedFundsQuery.execute()
 
     console.log('Scrapping data...')
     const browser = await puppeteer.launch({
