@@ -3,6 +3,7 @@ const scrapAllFunds = require('./scripts/scrapAllFunds')
 const missingFunds = require('./scripts/missingFunds')
 const testDb = require('./scripts/testDb')
 const initDb = require('./scripts/initDb')
+const normalizeAssets = require('./scripts/normalizeAssets')
 
 const options = [
   {
@@ -24,6 +25,10 @@ const options = [
   {
     text: 'Init Db',
     run: () => initDb.run()
+  },
+  {
+    text: 'Normalize Db',
+    run: () => normalizeAssets.run()
   },
 ].map((opc, index) => {
   return {
