@@ -34,6 +34,7 @@ module.exports = {
           acronym,
           longName,
           admin,
+          source: 'funds-explorer',
         }
   
         funds.push(fund)

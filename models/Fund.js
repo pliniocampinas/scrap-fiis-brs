@@ -4,6 +4,7 @@ class Fund {
     this.acronym = scrap?.acronym?.trim()
     this.longName = scrap?.longName?.trim()
     this.admin = scrap?.admin?.trim()
+    this.source = scrap.source
   }
 
   validade() {

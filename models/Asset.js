@@ -9,6 +9,7 @@ class Asset {
       .trim()
     ) || 0
     this.fundAcronym = scrap.fundAcronym?.trim()
+    this.source = scrap.source
     this.setCityAndState(scrap.cityWithState)
   }
 

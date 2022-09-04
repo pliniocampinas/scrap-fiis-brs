@@ -6,3 +6,6 @@ CREATE TABLE IF NOT EXISTS scrapped_funds (
   admin TEXT,
   PRIMARY KEY (created_on, acronym)
 );
+
+ALTER TABLE scrapped_funds
+ADD SOURCE varchar(100);

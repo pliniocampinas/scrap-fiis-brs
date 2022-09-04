@@ -6,7 +6,7 @@ module.exports = {
     console.log('Inserting to scrapped_assets')
 
     const sql = `
-      INSERT INTO scrapped_assets (fund_acronym, title, address, neighborhood, city, state, square_meters, created_on)
+      INSERT INTO scrapped_assets (fund_acronym, title, address, neighborhood, city, state, square_meters, source, created_on)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
     `
     const currentDate = new Date()
@@ -29,6 +29,7 @@ module.exports = {
           asset.city,
           asset.state,
           asset.squareMeters,
+          asset.source,
           currentDate,
         ])
       } catch(err) {

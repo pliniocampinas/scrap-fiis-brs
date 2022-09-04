@@ -45,6 +45,7 @@ const navidateAndScrap = async (page, url) => {
         neighborhood,
         cityWithState,
         squareMeters,
+        source: 'funds-explorer',
       }
 
       assets.push(assetData)
