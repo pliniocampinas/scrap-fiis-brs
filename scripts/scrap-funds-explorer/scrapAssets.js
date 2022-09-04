@@ -1,7 +1,6 @@
 const puppeteer = require('puppeteer')
-const exportCsv = require('../utils/exportCsv')
-const insertScrappedAssetsCommand = require('../commands/insertScrappedAssetsCommand')
-const getScrappedFundsQuery = require('../queries/getScrappedFundsQuery')
+const insertScrappedAssetsCommand = require('../../commands/insertScrappedAssetsCommand')
+const getScrappedFundsQuery = require('../../queries/getScrappedFundsQuery')
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -82,7 +81,5 @@ module.exports = {
     }
 
     await browser.close()
-
-    exportCsv.export("./scrapped-content/assets-location.csv", assetsLocationPerFund)
   }
 }

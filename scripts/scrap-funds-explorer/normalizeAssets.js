@@ -1,4 +1,4 @@
-const connectionPool = require('../db/connectionPool')
+const connectionPool = require('../../db/connectionPool')
 var fs = require('fs');
 
 const runScript = async (filePath) => {

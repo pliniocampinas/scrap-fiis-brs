@@ -1,22 +1,17 @@
-const scrapAssets = require('./scripts/scrapAssets')
-const scrapAllFunds = require('./scripts/scrapAllFunds')
-const missingFunds = require('./scripts/missingFunds')
+const scrapAssetsFromFundsExplorer = require('./scripts/scrap-funds-explorer/scrapAssets')
+const scrapAllFundsFromFundsExplorer = require('./scripts/scrap-funds-explorer/scrapAllFunds')
 const testDb = require('./scripts/testDb')
 const initDb = require('./scripts/initDb')
-const normalizeAssets = require('./scripts/normalizeAssets')
+const normalizeAssetsFromFundsExplorer = require('./scripts/scrap-funds-explorer/normalizeAssets')
 
 const options = [
   {
-    text: 'Scrap Fund List',
-    run: () => scrapAllFunds.run()
+    text: 'Scrap Fund List from funds explorer',
+    run: () => scrapAllFundsFromFundsExplorer.run()
   },
   {
-    text: 'Scrap Fund\'s assets',
-    run: () => scrapAssets.run()
-  },
-  {
-    text: 'Verify missing funds',
-    run: () => missingFunds.run()
+    text: 'Scrap Fund\'s assets from funds explorer',
+    run: () => scrapAssetsFromFundsExplorer.run()
   },
   {
     text: 'Test Db',
@@ -27,8 +22,8 @@ const options = [
     run: () => initDb.run()
   },
   {
-    text: 'Normalize Db',
-    run: () => normalizeAssets.run()
+    text: 'Normalize Db from funds explorer',
+    run: () => normalizeAssetsFromFundsExplorer.run()
   },
 ].map((opc, index) => {
   return {

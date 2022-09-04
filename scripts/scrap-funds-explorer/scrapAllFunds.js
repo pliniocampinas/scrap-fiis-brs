@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer')
-const exportCsv = require('../utils/exportCsv')
-const insertScrappedFundsCommand = require('../commands/insertScrappedFundsCommand')
+const insertScrappedFundsCommand = require('../../commands/insertScrappedFundsCommand')
 
 module.exports = {
   async run() {
@@ -43,7 +42,6 @@ module.exports = {
       return funds
     }, {})
 
-    exportCsv.export("./scrapped-content/funds-list.csv", fundsMetaData)
     insertScrappedFundsCommand.execute(fundsMetaData)
 
     await browser.close()
