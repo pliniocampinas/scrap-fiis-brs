@@ -10,3 +10,6 @@ CREATE TABLE IF NOT EXISTS scrapped_assets (
   created_on TIMESTAMP NOT NULL,
   PRIMARY KEY (sequential, fund_acronym)
 );
+
+ALTER TABLE scrapped_assets
+ADD SOURCE varchar(100);
