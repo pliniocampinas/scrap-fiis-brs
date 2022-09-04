@@ -7,7 +7,7 @@ module.exports = {
 
     const sql = `
       INSERT INTO scrapped_funds (created_on, acronym, url, long_name, admin, source)
-      VALUES ($1, $2, $3, $4, $5);
+      VALUES ($1, $2, $3, $4, $5, $6);
     `
     const currentDate = new Date()
     scrappedFunds.forEach(async scrappedFund => {
