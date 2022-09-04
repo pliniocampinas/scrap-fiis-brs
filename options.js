@@ -3,6 +3,7 @@ const scrapAllFundsFromFundsExplorer = require('./scripts/scrap-funds-explorer/s
 const testDb = require('./scripts/testDb')
 const initDb = require('./scripts/initDb')
 const normalizeAssetsFromFundsExplorer = require('./scripts/scrap-funds-explorer/normalizeAssets')
+const scrapAllFundsFromClubeFii = require('./scripts/scrap-clubefii/scrapAllFunds')
 
 const options = [
   {
@@ -12,6 +13,10 @@ const options = [
   {
     text: 'Scrap Fund\'s assets from funds explorer',
     run: () => scrapAssetsFromFundsExplorer.run()
+  },
+  {
+    text: 'Scrap Fund List from clube fii',
+    run: () => scrapAllFundsFromClubeFii.run()
   },
   {
     text: 'Test Db',
