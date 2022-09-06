@@ -10,7 +10,12 @@ class Asset {
     ) || 0
     this.fundAcronym = scrap.fundAcronym?.trim()
     this.source = scrap.source
-    this.setCityAndState(scrap.cityWithState)
+    if(this.source === 'funds-explorer') {
+      this.setCityAndState(scrap.cityWithState)
+    } else {
+      this.city = scrap?.city??''
+      this.state = scrap?.state??''
+    }
   }
 
   setCityAndState(cityWithState) {
@@ -44,20 +49,6 @@ class Asset {
       return {
         isValid: false,
         error: 'FundAcronym cannot be larger than 10 characters'
-      }
-    }
-
-    if((this.state?.length || 0) == 0) {
-      return {
-        isValid: false,
-        error: 'State cannot be empty'
-      }
-    }
-
-    if(this.state.length != 2) {
-      return {
-        isValid: false,
-        error: 'State should have 2 characters'
       }
     }
 
