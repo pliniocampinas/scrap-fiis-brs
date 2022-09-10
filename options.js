@@ -4,6 +4,7 @@ const testDb = require('./scripts/testDb')
 const initDb = require('./scripts/initDb')
 const normalizeAssetsFromFundsExplorer = require('./scripts/scrap-funds-explorer/normalizeAssets')
 const scrapAllFundsFromClubeFii = require('./scripts/scrap-clubefii/scrapAllFunds')
+const testPlacesApi = require('./scripts/testPlacesApi')
 
 const options = [
   {
@@ -29,6 +30,10 @@ const options = [
   {
     text: 'Normalize Db from funds explorer',
     run: () => normalizeAssetsFromFundsExplorer.run()
+  },
+  {
+    text: 'Test Places Api',
+    run: () => testPlacesApi.run()
   },
 ].map((opc, index) => {
   return {

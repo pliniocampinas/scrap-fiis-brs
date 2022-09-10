@@ -1,3 +1,4 @@
+require('dotenv').config();
 const options = require('./options')
 
 optionsText = 'Select an action: \n' + options.map(opt => `${opt.value} - ${opt.text}\n`).join('')
