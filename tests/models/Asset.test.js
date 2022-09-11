@@ -6,7 +6,8 @@ test('Asset constructor should trim values, parse squareMeters to integer and se
     neighborhood: '  neighborhood  ',
     squareMeters: '  69.628,00 m2  ',
     fundAcronym: '  fundAcronym  ',
-    cityWithState: '  São Paulo - sp  '
+    city: '  São Paulo',
+    state: 'sp ',
   })
   expect(asset.address).toBe('address')
   expect(asset.neighborhood).toBe('neighborhood')
@@ -16,9 +17,19 @@ test('Asset constructor should trim values, parse squareMeters to integer and se
   expect(asset.state).toBe('SP')
 })
 
-test('Asset constructor should parse city and state properly if city contains hifen', () => {
+test('Asset constructor should parse city and state properly if source is funds-explorer', () => {
   const asset = new Asset({
-    cityWithState: '  Embu-Guaçu - SP  '
+    cityWithState: '  São Paulo - sp  ',
+    source: 'funds-explorer',
+  })
+  expect(asset.city).toBe('São Paulo')
+  expect(asset.state).toBe('SP')
+})
+
+test('Asset constructor should parse city and state properly if source is funds-explorer and city contains hifen', () => {
+  const asset = new Asset({
+    cityWithState: '  Embu-Guaçu - SP  ',
+    source: 'funds-explorer',
   })
   expect(asset.city).toBe('Embu-Guaçu')
   expect(asset.state).toBe('SP')
@@ -63,41 +74,11 @@ test('Asset validate should reject fundAcronym value larger than 10 characters',
   expect(fundWithLongAcronymValidation.error).toBe('FundAcronym cannot be larger than 10 characters')
 })
 
-test('Asset validate should reject state value nullish or empty', () => {
-  const fundWithNoState = new Asset({
-    fundAcronym: '123456789a',
-  })
-
-  const fundWithEmptyState = new Asset({
-    fundAcronym: '123456789a',
-    cityWithState: '  São Paulo -  '
-  })
-
-  const fundWithNoStateValidation = fundWithNoState.validade()
-  const fundWithEmptyStateValidation = fundWithEmptyState.validade()
-
-  expect(fundWithNoStateValidation.isValid).toBe(false)
-  expect(fundWithNoStateValidation.error).toBe('State cannot be empty')
-  expect(fundWithEmptyStateValidation.isValid).toBe(false)
-  expect(fundWithEmptyStateValidation.error).toBe('State cannot be empty')
-})
-
-test('Asset validate should reject state value if length is different than 2', () => {
-  const fundWithInvalidState = new Asset({
-    fundAcronym: '123456789a',
-    cityWithState: '  São Paulo - sps  '
-  })
-
-  const fundWithInvalidStateValidation = fundWithInvalidState.validade()
-
-  expect(fundWithInvalidStateValidation.isValid).toBe(false)
-  expect(fundWithInvalidStateValidation.error).toBe('State should have 2 characters')
-})
-
 test('Asset validate should accept a valid asset', () => {
   const fundWithInvalidState = new Asset({
     fundAcronym: '123456789a',
-    cityWithState: '  São Paulo - sp  '
+    city: '  São Paulo ',
+    state: 'SP',
   })
 
   const fundWithInvalidStateValidation = fundWithInvalidState.validade()

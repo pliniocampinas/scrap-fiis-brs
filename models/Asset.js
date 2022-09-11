@@ -13,8 +13,8 @@ class Asset {
     if(this.source === 'funds-explorer') {
       this.setCityAndState(scrap.cityWithState)
     } else {
-      this.city = scrap?.city??''
-      this.state = scrap?.state??''
+      this.city = (scrap?.city??'').trim()
+      this.state = (scrap?.state??'').trim().toUpperCase()
     }
   }
 
