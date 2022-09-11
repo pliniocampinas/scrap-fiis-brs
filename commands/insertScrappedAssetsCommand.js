@@ -33,7 +33,7 @@ module.exports = {
           currentDate,
         ])
       } catch(err) {
-        console.log('Database error', fund)
+        console.log('Database error', asset)
         console.log(err)
         return
       }

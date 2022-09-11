@@ -18,5 +18,6 @@ module.exports = {
     console.log('initializing tables')
     await runScript('./db/create_table_scrapped_funds.sql')
     await runScript('./db/create_table_scrapped_assets.sql')
+    await runScript('./db/create_table_assets_location.sql')
   }
 }

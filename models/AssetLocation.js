@@ -1,12 +1,12 @@
 class AssetLocation {
   constructor(location) {
-    this.assetSequential = scrap.assetSequential?.trim()
-    this.inputText = scrap.inputText?.trim()
-    this.outFormattedAddress = scrap.outFormattedAddress?.trim()
-    this.outName = scrap.outName?.trim()
-    this.outPlaceId = scrap.outPlaceId?.trim()
-    this.outLatitude = scrap.outLatitude?.trim()
-    this.outLongitude = scrap.outLongitude?.trim()
+    this.assetSequential = location.assetSequential?? 0
+    this.inputText = location.inputText?.trim()
+    this.outFormattedAddress = location.outFormattedAddress?.trim()
+    this.outName = location.outName?.trim()
+    this.outPlaceId = location.outPlaceId?.trim()
+    this.outLatitude = location.outLatitude?.trim()
+    this.outLongitude = location.outLongitude?.trim()
   }
 }
 
