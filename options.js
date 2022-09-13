@@ -6,6 +6,7 @@ const normalizeAssetsFromFundsExplorer = require('./scripts/scrap-funds-explorer
 const scrapAllFundsFromClubeFii = require('./scripts/scrap-clubefii/scrapAllFunds')
 const testPlacesApi = require('./scripts/testPlacesApi')
 const loadCitiesGdp = require('./scripts/loadCitiesGdp')
+const loadCitiesLocation = require('./scripts/loadCitiesLocation')
 
 const options = [
   {
@@ -39,6 +40,10 @@ const options = [
   {
     text: 'Load Cities Gdp',
     run: () => loadCitiesGdp.run()
+  },
+  {
+    text: 'Load Cities Location',
+    run: () => loadCitiesLocation.run()
   },
 ].map((opc, index) => {
   return {
