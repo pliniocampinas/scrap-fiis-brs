@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS scrapped_funds (
 );
 
 ALTER TABLE scrapped_funds
-ADD SOURCE varchar(100);
+ADD IF NOT EXISTS SOURCE varchar(100);

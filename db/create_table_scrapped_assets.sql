@@ -12,4 +12,4 @@ CREATE TABLE IF NOT EXISTS scrapped_assets (
 );
 
 ALTER TABLE scrapped_assets
-ADD SOURCE varchar(100);
+ADD IF NOT EXISTS SOURCE varchar(100);
