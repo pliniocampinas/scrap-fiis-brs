@@ -84,3 +84,6 @@ where city = 'Duque de Caixas'
 
 update scrapped_assets set city = 'Manaus' 
 where city = 'Manuas'
+
+update scrapped_assets set city = 'Igarassu' 
+where city = 'Pernambuco' and neighborhood = 'Igarassu'
