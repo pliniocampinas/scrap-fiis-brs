@@ -61,7 +61,7 @@ module.exports = {
   async run() {
     console.log('Loading funds list...')
     
-    const funds = await getScrappedFundsQuery.execute()
+    const funds = await getScrappedFundsQuery.execute({ source: 'funds-explorer' })
 
     console.log('Scrapping data...')
     const browser = await puppeteer.launch({

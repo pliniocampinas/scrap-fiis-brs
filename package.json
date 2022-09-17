@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest",
-    "test-unit": "jest --testPathIgnorePatterns /tests/commands/"
+    "test-unit": "jest --testPathIgnorePatterns /tests/commands/ /tests/queries/"
   },
   "repository": {
     "type": "git",
