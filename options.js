@@ -4,6 +4,7 @@ const testDb = require('./scripts/testDb')
 const initDb = require('./scripts/initDb')
 const normalizeAssetsFromFundsExplorer = require('./scripts/scrap-funds-explorer/normalizeAssets')
 const scrapAllFundsFromClubeFii = require('./scripts/scrap-clubefii/scrapAllFunds')
+const scrapAssetsFromClubeFii = require('./scripts/scrap-clubefii/scrapAssets')
 const testPlacesApi = require('./scripts/testPlacesApi')
 const loadCitiesGdp = require('./scripts/loadCitiesGdp')
 const loadCitiesLocation = require('./scripts/loadCitiesLocation')
@@ -20,6 +21,10 @@ const options = [
   {
     text: 'Scrap Fund List from clube fii',
     run: () => scrapAllFundsFromClubeFii.run()
+  },
+  {
+    text: 'Scrap Fund\'s assets from clube fii',
+    run: () => scrapAssetsFromClubeFii.run()
   },
   {
     text: 'Test Db',

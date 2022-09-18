@@ -19,8 +19,6 @@ module.exports = {
     console.log('Navigating to ', baseUrl)
     await page.goto(baseUrl)
     
-    await page.screenshot({path: 'example.png'});
-
     await page.waitForSelector('.tabela_principal')
 
     const fundsMetaData = await page.evaluate(() => {
