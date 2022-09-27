@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest",
-    "test-unit": "jest --testPathIgnorePatterns /tests/commands/ /tests/queries/"
+    "test-integration": "jest",
+    "test": "jest --testPathIgnorePatterns /tests/commands/ /tests/queries/"
   },
   "repository": {
     "type": "git",

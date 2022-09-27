@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS cities_gdp (
+  year INTEGER,
+  city_id INTEGER,
+  greater_region_code INTEGER,
+  greater_region_name TEXT,
+  state_id INTEGER,
+  state_acronym TEXT,
+  state_name TEXT,
+  city_name TEXT,
+  metropolitan_region TEXT,
+  meso_region_code INTEGER,
+  meso_region_name TEXT,
+  is_legal_amazon BOOLEAN,
+  is_semi_arid BOOLEAN,
+  is_sao_paulo_region BOOLEAN,
+  agro_value_1000_brl NUMERIC(12,2),
+  industry_value_1000_brl NUMERIC(12,2),
+  services_value_1000_brl NUMERIC(12,2),
+  public_expending_value_1000_brl NUMERIC(12,2),
+  total_value_1000_brl NUMERIC(12,2),
+  taxes_value_1000_brl NUMERIC(12,2),
+  total_gdp_1000_brl NUMERIC(12,2),
+  gdp_per_capita_brl NUMERIC(12,2),
+  most_valueable_sector TEXT,
+  second_most_valueable_sector TEXT,
+  third_most_valueable_sector TEXT
+  PRIMARY KEY (year, city_id)
+);
