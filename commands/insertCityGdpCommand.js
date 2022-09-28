@@ -6,7 +6,7 @@ module.exports = {
     console.log('Inserting to cities_gdp')
   
     const sql = `
-      INSERT INTO cities_coordinates (
+      INSERT INTO cities_gdp (
         year,
         city_id,
         greater_region_code,
@@ -31,7 +31,7 @@ module.exports = {
         gdp_per_capita_brl,
         most_valueable_sector,
         second_most_valueable_sector,
-        third_most_valueable_sector,
+        third_most_valueable_sector
       )
       VALUES (
         $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, 

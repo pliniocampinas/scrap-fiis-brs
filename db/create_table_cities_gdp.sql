@@ -23,6 +23,6 @@ CREATE TABLE IF NOT EXISTS cities_gdp (
   gdp_per_capita_brl NUMERIC(12,2),
   most_valueable_sector TEXT,
   second_most_valueable_sector TEXT,
-  third_most_valueable_sector TEXT
+  third_most_valueable_sector TEXT,
   PRIMARY KEY (year, city_id)
 );
