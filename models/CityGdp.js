@@ -3,6 +3,8 @@ const parseBrlCurrency = (currency) => {
     currency
       ?.replace('.', '')
       ?.replace(',', '.')
+      ?.replace('(', '')
+      ?.replace(')', '')
   ) || 0
 }
 
