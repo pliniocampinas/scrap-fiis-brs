@@ -22,7 +22,7 @@ test('CityCoordinates constructor should trim values', () => {
     'Valor adicionado bruto da Administração, defesa, educação e saúde públicas e seguridade social, \na preços correntes\n(R$ 1.000)': '  93.245 ',
     'Valor adicionado bruto total, \na preços correntes\n(R$ 1.000)': '  241.120 ',
     'Impostos, líquidos de subsídios, sobre produtos, \na preços correntes\n(R$ 1.000)': '  20.957 ',
-    'Produto Interno Bruto, \na preços correntes\n(R$ 1.000)': '  (262.077) ',
+    'Produto Interno Bruto, \na preços correntes\n(R$ 1.000)': '  (262.077.000) ',
     'Produto Interno Bruto per capita, \na preços correntes\n(R$ 1,00)': '  (10.731,18) ',
     'Atividade com maior valor adicionado bruto': 'Administração, defesa, educação e saúde públicas e seguridade social',
     'Atividade com segundo maior valor adicionado bruto': 'Pecuária, inclusive apoio à pecuária',
@@ -48,7 +48,7 @@ test('CityCoordinates constructor should trim values', () => {
   expect(city.publicExpendingValue1000Brl).toBe(93245)
   expect(city.totalValue1000Brl).toBe(241120)
   expect(city.taxesValue1000Brl).toBe(20957)
-  expect(city.totalGdp1000Brl).toBe(262077)
+  expect(city.totalGdp1000Brl).toBe(262077000)
   expect(city.gdpPerCapitaBrl).toBe(10731.18)
   expect(city.mostValueableSector).toBe('Administração, defesa, educação e saúde públicas e seguridade social')
   expect(city.secondMostValueableSector).toBe('Pecuária, inclusive apoio à pecuária')

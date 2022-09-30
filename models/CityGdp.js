@@ -1,7 +1,7 @@
 const parseBrlCurrency = (currency) => {
   return parseFloat(
     currency
-      ?.replace('.', '')
+      ?.replaceAll('.', '')
       ?.replace(',', '.')
       ?.replace('(', '')
       ?.replace(')', '')
