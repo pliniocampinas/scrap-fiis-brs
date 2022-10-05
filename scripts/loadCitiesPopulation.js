@@ -4,7 +4,7 @@ const {parse} = require('csv-parse/sync');
 
 const fetchData = async (year) => {
   const csvRootUrl = 'https://gist.githubusercontent.com/pliniocampinas/eb6195f3a270cd7d261e0e53cf8774d4/raw/1f9106e2b1363423bf5975a7a81fed0e968fe772'
-  const { data } = await axios.get(`${csvRootUrl}/estimativa_${year}`)
+  const { data } = await axios.get(`${csvRootUrl}/estimativa_${year}.csv`)
   const records = parse(data, {
     columns: true,
     delimiter: ',',

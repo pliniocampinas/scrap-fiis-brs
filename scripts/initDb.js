@@ -21,5 +21,6 @@ module.exports = {
     await runScript('./db/create_table_assets_location.sql')
     await runScript('./db/create_table_cities_coordinates.sql')
     await runScript('./db/create_table_cities_gdp.sql')
+    await runScript('./db/create_table_cities_population.sql')
   }
 }
