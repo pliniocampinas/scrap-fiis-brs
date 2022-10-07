@@ -1,5 +1,5 @@
 const axios = require('axios').default
-// const insertCityPopulationCommand = require('../commands/insertCityPopulationCommand')
+const insertCityPopulationCommand = require('../commands/insertCityPopulationCommand')
 const {parse} = require('csv-parse/sync');
 
 const fetchData = async (year) => {
@@ -24,10 +24,10 @@ module.exports = {
         const citiesPopulationEstimatives = await fetchData(year)
         console.log('citiesPopulationEstimatives found: ', citiesPopulationEstimatives.length)
         console.log('First: ', citiesPopulationEstimatives[0])
-        // for (const year of citiesPopulationEstimatives) {
-        //   // Insert command
-        //   // await insertCityPopulationCommand.execute(city)
-        // }
+        for (const cityPop of citiesPopulationEstimatives) {
+          // Insert command
+          await insertCityPopulationCommand.execute(cityPop, year)
+        }
       }
     } catch(err) {
       console.warn('Load failed')
