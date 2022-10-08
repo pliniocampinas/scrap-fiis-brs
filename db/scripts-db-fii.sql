@@ -86,3 +86,35 @@ where LOWER(title) like '%mineirão%'
 and fund_acronym = 'HGRU11'
 and source = 'clubefii'
 
+COPY (select * from last_cities_gdp) 
+TO 'C:\Users\plini\Downloads\pg-exports\last_cities_gdp.csv' 
+DELIMITER ',' CSV HEADER;
+
+select 
+	gdp.year, 
+	gdp.city_id, 
+	gdp.city_name, 
+	pop.estimate_population 
+from cities_gdp gdp
+left join cities_population pop on
+	pop.city_id = gdp.city_id
+and pop.year = gdp.year
+where gdp.city_id = 1100015
+
+-- Population growth
+select 
+	cp11.city_id, cp11.city_name, cp11.state_acronym,
+	cp11.estimate_population population2011, 
+	cp21.estimate_population population2021,
+	cp21.estimate_population - cp11.estimate_population population_growth,
+	ROUND (
+		((cp21.estimate_population::float / cp11.estimate_population::float) - 1)::numeric 
+	, 2) population_growth_percent
+from cities_population cp11
+left join cities_population cp21 on
+	cp11.city_id = cp21.city_id
+where 
+	cp11.year = 2011
+and cp21.year = 2021
+order by population_growth_percent desc
+
