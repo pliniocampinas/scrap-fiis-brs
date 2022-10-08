@@ -1,4 +1,4 @@
-CREATE VIEW cities_population_growth AS
+CREATE OR REPLACE VIEW cities_population_growth AS
 select 
 	cp11.city_id, cp11.city_name, cp11.state_acronym,
 	cp11.estimate_population population2011, 

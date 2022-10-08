@@ -102,6 +102,7 @@ and pop.year = gdp.year
 where gdp.city_id = 1100015
 
 -- Population growth
+CREATE VIEW cities_population_growth AS
 select 
 	cp11.city_id, cp11.city_name, cp11.state_acronym,
 	cp11.estimate_population population2011, 
@@ -118,3 +119,4 @@ where
 and cp21.year = 2021
 order by population_growth_percent desc
 
+select * from cities_population_growth

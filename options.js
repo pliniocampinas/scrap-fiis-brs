@@ -9,6 +9,7 @@ const testPlacesApi = require('./scripts/testPlacesApi')
 const loadCitiesGdp = require('./scripts/loadCitiesGdp')
 const loadCitiesLocation = require('./scripts/loadCitiesLocation')
 const loadCitiesPopulation = require('./scripts/loadCitiesPopulation')
+const calculateCitiesDistances = require('./scripts/calculateCitiesDistances')
 
 const options = [
   {
@@ -54,6 +55,10 @@ const options = [
   {
     text: 'Load Cities Population',
     run: () => loadCitiesPopulation.run()
+  },
+  {
+    text: 'Calc Cities Distances',
+    run: () => calculateCitiesDistances.run()
   },
 ].map((opc, index) => {
   return {
