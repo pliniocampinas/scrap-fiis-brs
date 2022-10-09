@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS cities_coordinates (
   city_id INTEGER,
   city_name TEXT,
-  latitude TEXT,
-  longitude TEXT,
+  latitude FLOAT,
+  longitude FLOAT,
   is_capital BOOLEAN,
   PRIMARY KEY (city_id)
 );

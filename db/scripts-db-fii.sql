@@ -119,4 +119,11 @@ where
 and cp21.year = 2021
 order by population_growth_percent desc
 
+-- drop view cities_population_growth
+-- drop table cities_coordinates
+
 select * from cities_population_growth
+
+SELECT * FROM cities_coordinates where is_capital = true
+
+select * from cities_population where city_name = 'Acrelândia'

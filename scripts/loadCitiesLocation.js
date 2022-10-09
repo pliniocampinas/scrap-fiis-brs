@@ -27,8 +27,8 @@ module.exports = {
         await insertCityCoordinatesCommand.execute({
           cityId: city.codigo_ibge,
           cityName: city.nome,
-          latitude: city.longitude,
-          longitude: city.latitude,
+          latitude: city.latitude,
+          longitude: city.longitude,
           isCapital: city.capital
         })
       }
