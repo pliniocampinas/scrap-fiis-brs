@@ -23,5 +23,6 @@ module.exports = {
     await runScript('./db/create_table_cities_gdp.sql')
     await runScript('./db/create_table_cities_population.sql')
     await runScript('./db/create_view_cities_population_growth.sql')
+    await runScript('./db/create_view_cities_gdp_growth.sql')
   }
 }
