@@ -8,7 +8,7 @@ module.exports = {
     const sql = `
       INSERT INTO cities_coordinates (
         city_id,
-        state_acronym,
+        is_capital,
         city_name,
         latitude,
         longitude
@@ -20,7 +20,7 @@ module.exports = {
     try {
       await connectionPool.query(sql, [
         cityCoordinates.cityId,
-        cityCoordinates.stateAcronym,
+        cityCoordinates.isCapital,
         cityCoordinates.cityName,
         cityCoordinates.latitude,
         cityCoordinates.longitude,
