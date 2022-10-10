@@ -1,4 +1,4 @@
-CREATE VIEW cities_gdp_growth AS
+CREATE OR REPLACE VIEW cities_gdp_growth AS
 select 
 	cg10.city_id, cg10.city_name, cg10.state_acronym,
 	cg10.gdp_per_capita_brl gdp_per_capita_brl_2010, 
@@ -18,4 +18,4 @@ left join cities_gdp cg19 on
 	cg10.city_id = cg19.city_id
 where 
 	cg10.year = 2010
-and cg19.year = 2019
+and cg19.year = 2019;
