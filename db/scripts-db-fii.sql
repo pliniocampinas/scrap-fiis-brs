@@ -153,7 +153,10 @@ where
 and cg19.year = 2019
 order by gdp_per_capita_brl_growth_percent desc
 
-select distinct year from cities_gdp
+select metropolitan_region, count(metropolitan_region) counter from cities_gdp
+where year = 2019
+group by metropolitan_region
+order by counter desc
 
 -- Full cities analysis view
 -- CREATE VIEW full_cities_analysis AS
