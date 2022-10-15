@@ -9,3 +9,12 @@ CREATE TABLE IF NOT EXISTS cities_coordinates (
 
 ALTER TABLE cities_coordinates
 ADD IF NOT EXISTS distance_equator_km INTEGER;
+
+ALTER TABLE cities_coordinates
+ADD IF NOT EXISTS is_matopiba BOOLEAN;
+
+ALTER TABLE cities_coordinates
+ADD IF NOT EXISTS is_near_coast BOOLEAN;
+
+ALTER TABLE cities_coordinates
+ADD IF NOT EXISTS is_sea_front BOOLEAN;

@@ -1,5 +1,5 @@
 const insertCityCoordinatesCommand = require('../../commands/insertCityCoordinatesCommand')
-const setCitiesDistancesCommand = require('../../commands/setCitiesDistancesCommand')
+const setCitiesGeographicFeatureCommand = require('../../commands/setCitiesGeographicFeatureCommand')
 const connectionPool = require('../../db/connectionPool')
 const fs = require('fs')
 
@@ -12,7 +12,7 @@ afterAll(() => {
   return connectionPool.query('DROP TABLE cities_coordinates')
 })
 
-test('setCitiesDistancesCommand should set correct data', async () => {
+test('setCitiesGeographicFeatureCommand should set correct data', async () => {
   await insertCityCoordinatesCommand.execute({
     cityId: '2800308',
     isCapital: '1',
@@ -21,13 +21,27 @@ test('setCitiesDistancesCommand should set correct data', async () => {
     latitude: '-10.9091',
   })
 
-  await setCitiesDistancesCommand.execute({
+  await setCitiesGeographicFeatureCommand.execute({
     cityId: '2800308',
-    longitude: -37.0677,
-    latitude: -10.9091,
+    featureValue: true,
+    featureName: 'isMatopiba'
+  })
+
+  await setCitiesGeographicFeatureCommand.execute({
+    cityId: '2800308',
+    featureValue: true,
+    featureName: 'isNearCoast'
+  })
+
+  await setCitiesGeographicFeatureCommand.execute({
+    cityId: '2800308',
+    featureValue: true,
+    featureName: 'isSeaFront'
   })
 
   const { rows } = await connectionPool.query('SELECT * FROM cities_coordinates')
   expect(rows.length).toBe(1)
-  expect(parseFloat(rows[0].distance_equator_km)).toBe(1214)
+  expect(rows[0].is_matopiba).toBe(true)
+  expect(rows[0].is_near_coast).toBe(true)
+  expect(rows[0].is_sea_front).toBe(true)
 })
