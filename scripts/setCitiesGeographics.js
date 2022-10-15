@@ -1,4 +1,6 @@
 
+const axios = require('axios').default
+const {parse} = require('csv-parse/sync');
 const setCitiesGeographicFeatureCommand = require('../commands/setCitiesGeographicFeatureCommand')
 
 const fetchData = async (csvUrl) => {
@@ -17,17 +19,17 @@ module.exports = {
       {
         cityIdLabel: 'CD_MUN',
         featureName: 'isMatopiba',
-        csvUrl: ''
+        csvUrl: 'https://gist.githubusercontent.com/pliniocampinas/61edb45bd8fb1db7bb63714ff066a844/raw/36960a9043051009cca0b6744e68e454d1020d94/MATOPIBA_2021.csv'
       },
       {
         cityIdLabel: 'CD_MUN',
         featureName: 'isNearCoast',
-        csvUrl: ''
+        csvUrl: 'https://gist.githubusercontent.com/pliniocampinas/61edb45bd8fb1db7bb63714ff066a844/raw/36960a9043051009cca0b6744e68e454d1020d94/Municipios_Costeiros_2021.csv'
       },
       {
         cityIdLabel: 'CD_MUN',
         featureName: 'isSeaFront',
-        csvUrl: ''
+        csvUrl: 'https://gist.githubusercontent.com/pliniocampinas/61edb45bd8fb1db7bb63714ff066a844/raw/36960a9043051009cca0b6744e68e454d1020d94/Municipios_Defrontantes_com_o_Mar_2021.csv'
       },
     ]
     
