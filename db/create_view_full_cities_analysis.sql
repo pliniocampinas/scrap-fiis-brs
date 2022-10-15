@@ -8,7 +8,7 @@ select cg.city_id, cg.year, cg.city_name, cg.state_acronym, cg.greater_region_na
 	cgdp_growth.gdp_per_capita_brl_growth, cgdp_growth.gdp_per_capita_brl_growth_percent,
 	cgdp_growth.total_gdp_1000_brl_growth, cgdp_growth.total_gdp_1000_brl_growth_percent,
 	cp_growth.population_growth, cp_growth.population_growth_percent,
-	cc.is_capital, cc.distance_equator_km, cp_growth.population2021
+	cc.is_capital, cc.distance_equator_km, cp_growth.population2021, cc.is_matopiba, cc.is_near_coast, cc.is_sea_front
 from cities_gdp cg
 left join cities_gdp_growth cgdp_growth on
 	cgdp_growth.city_id = cg.city_id
