@@ -124,7 +124,8 @@ order by population_growth_percent desc
 delete from cities_coordinates
 select * from cities_population_growth
 
-SELECT * FROM cities_coordinates where is_capital = true
+SELECT * FROM cities_coordinates 
+where is_near_coast = false
 order by latitude 
 
 select * from cities_population where city_name = 'Acrelândia'

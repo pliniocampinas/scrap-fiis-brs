@@ -2,6 +2,7 @@
 const axios = require('axios').default
 const {parse} = require('csv-parse/sync');
 const setCitiesGeographicFeatureCommand = require('../commands/setCitiesGeographicFeatureCommand')
+const setCitiesGeographicFeaturesNullsCommand = require('../commands/setCitiesGeographicFeaturesNullsCommand')
 
 const fetchData = async (csvUrl) => {
   const { data } = await axios.get(csvUrl)
@@ -49,14 +50,8 @@ module.exports = {
             featureValue: true,
           })
         }
-      }
-      // Insert command
-      for (const city of citiesLocation) {
-        await setCitiesDistancesCommand.execute({
-          cityId: city.city_id, 
-          latitude: parseFloat(city.latitude), 
-          longitude: parseFloat(city.longitude)
-        })
+        // Setting nulls to false
+        await setCitiesGeographicFeaturesNullsCommand.execute(source.featureName)
       }
     } catch(err) {
       console.warn('Load failed')

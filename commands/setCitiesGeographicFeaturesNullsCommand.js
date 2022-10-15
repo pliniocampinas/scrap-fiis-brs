@@ -1,8 +1,8 @@
 const connectionPool = require('../db/connectionPool')
 
 module.exports = {
-  async execute({cityId, featureValue, featureName}) {
-    console.log('Updating cities_coordinates, cityId: ', cityId)
+  async execute(featureName) {
+    console.log('Setting cities_coordinates null values to false: ')
 
     const featuresMapper = {
       'isMatopiba': 'is_matopiba',
@@ -14,17 +14,14 @@ module.exports = {
 
     const sql = `
       UPDATE cities_coordinates 
-      SET ${selectedFeatureField} = $1
-      WHERE city_id = $2;
+      SET ${selectedFeatureField} = false
+      WHERE ${selectedFeatureField} IS NULL;
     `
 
     try {
-      await connectionPool.query(sql, [
-        featureValue,
-        cityId,
-      ])
+      await connectionPool.query(sql)
     } catch(err) {
-      console.log('Database error featureName: ', featureName, 'featureValue', featureValue)
+      console.log('Database error featureName: ', featureName)
       console.log(err)
       return
     }
