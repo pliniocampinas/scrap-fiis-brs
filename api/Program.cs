@@ -1,25 +1,41 @@
 using Npgsql;
+using ScrapFunds.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-// DB_PORT: 5432
-var connectionString = "Host=localhost;Username=app_user;Password=app_user123;Database=fundsdb";
+// TODO: Set proper instrumentation for logging and middlewares
 
-app.MapGet("/", () => "Hello World!");
+var connectionString = builder.Configuration.GetSection("DbConnectionString").Get<string>();
 
-app.MapGet("/coords", async () => 
+app.MapGet("/", () => "ScrapFunds Api Root");
+
+// Use a middleware?
+app.MapGet("/health", async () => {
+  try {
+    await using var dataSource = NpgsqlDataSource.Create(connectionString);
+    await using (var cmd = dataSource.CreateCommand("SELECT 1"))
+    await using (var reader = await cmd.ExecuteReaderAsync())
+    {
+      await reader.ReadAsync();
+    }
+    return new HealthModel()
+      {
+        IsHealthy = true,
+      };
+  } catch (Exception e) {
+    Console.WriteLine("Health check exception [" + e.Message + "]");
+    return new HealthModel()
+      {
+        IsHealthy = false,
+      };
+  }
+});
+
+app.MapGet("/cities/full-visualization", async () => 
 {
   await using var dataSource = NpgsqlDataSource.Create(connectionString);
 
-  // // Insert some data
-  // await using (var cmd = dataSource.CreateCommand("INSERT INTO data (some_field) VALUES ($1)"))
-  // {
-  //   cmd.Parameters.AddWithValue("Hello world");
-  //   await cmd.ExecuteNonQueryAsync();
-  // }
-
-  // Retrieve all rows
   var text = "";
   await using (var cmd = dataSource.CreateCommand("SELECT city_id, latitude, longitude FROM cities_coordinates"))
   await using (var reader = await cmd.ExecuteReaderAsync())
