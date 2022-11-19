@@ -1,5 +1,6 @@
 using Npgsql;
 using ScrapFunds.Models;
+using ScrapFunds.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -34,24 +35,9 @@ app.MapGet("/health", async () => {
 
 app.MapGet("/cities/full-visualization", async () => 
 {
-  await using var dataSource = NpgsqlDataSource.Create(connectionString);
-
-  var text = "";
-  await using (var cmd = dataSource.CreateCommand("SELECT city_id, latitude, longitude FROM cities_coordinates"))
-  await using (var reader = await cmd.ExecuteReaderAsync())
-  {
-    while (await reader.ReadAsync())
-    {
-      Console.WriteLine("First city coordinate");
-      text += "city_id: " + reader.GetInt64(0);
-      text += "\n latitude: " + reader.GetDouble(1);
-      text += "\n longitude: " + reader.GetDouble(2);
-      Console.WriteLine(text);
-      break;
-    }
-  }
-
-  return text;
+  var query = new GetFullCitiesVisualizationQuery(connectionString);
+  var result = await query.Run();
+  return result;
 });
 
 app.Run();
