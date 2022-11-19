@@ -12,17 +12,6 @@ namespace ScrapFunds.Queries
       _connectionString = connectionString;
     }
 
-    private void MapValues(FullCityVisualizationModel model, NpgsqlDataReader? reader)
-    {
-      if(reader == null)
-      {
-        return;
-      }
-      model.CityId = reader.GetInt64(0);
-      model.Year = reader.GetInt32(1);
-      model.CityName = reader.GetString(2);
-    }
-
     public async Task<List<FullCityVisualizationModel>> Run()
     {
       await using var dataSource = NpgsqlDataSource.Create(_connectionString);
@@ -38,6 +27,8 @@ namespace ScrapFunds.Queries
         "population2021", "is_matopiba", "is_near_coast", "is_sea_front",
       };
 
+      Console.WriteLine("Selecting " + fields.Length + " fields");
+
       var sql = "SELECT " + String.Join(", ", fields) + " FROM full_cities_analysis";
       var results = new List<FullCityVisualizationModel>();
       
@@ -46,15 +37,52 @@ namespace ScrapFunds.Queries
       {
         while (await reader.ReadAsync())
         {
-          Console.WriteLine("First city");
           var model = new FullCityVisualizationModel();
           MapValues(model, reader);
           results.Add(model);
-          break;
         }
       }
 
       return results;
+    }
+    
+    private void MapValues(FullCityVisualizationModel model, NpgsqlDataReader? reader)
+    {
+      if(reader == null)
+      {
+        return;
+      }
+      model.CityId = reader.GetInt64(0);
+      model.Year = reader.GetInt32(1);
+      model.CityName = reader.GetString(2);
+      model.StateAcronym = reader.GetString(3);
+      model.GreaterRegionName = reader.GetString(4);
+      model.GreaterRegionCode = reader.GetInt32(5);
+      model.MetropolitanRegion = reader.GetString(6);
+      model.IsLegalAmazon = reader.GetBoolean(7);
+      model.IsSemiArid = reader.GetBoolean(8);
+      model.IsSaoPauloRegion = reader.GetBoolean(9);
+      model.TotalGdp1000Brl = reader.GetDecimal(10);
+      model.GdpPerCapitaBrl = reader.GetDecimal(11);
+      model.PublicExpendingValue1000Brl = reader.GetDecimal(12);
+      model.AgroValue1000Brl = reader.GetDecimal(13);
+      model.IndustryValue1000Brl = reader.GetDecimal(14);
+      model.ServicesValue1000Brl = reader.GetDecimal(15);
+      model.TaxesValue1000Brl = reader.GetDecimal(16);
+      model.MostValueableSector = reader.GetString(17);
+      model.SecondMostValueableSector = reader.GetString(18);
+      model.GdpPerCapitaBrlGrowth = reader.IsDBNull(19)? 0: reader.GetDecimal(19);
+      model.GdpPerCapitaBrlGrowthPercent = reader.IsDBNull(20)? 0: reader.GetDecimal(20);
+      model.TotalGdp1000BrlGrowth = reader.IsDBNull(21)? 0: reader.GetDecimal(21);
+      model.TotalGdp1000BrlGrowthPercent = reader.IsDBNull(22)? 0: reader.GetDecimal(22);
+      model.PopulationGrowth = reader.IsDBNull(23)? 0: reader.GetInt64(23);
+      model.PopulationGrowthPercent = reader.IsDBNull(24)? 0: reader.GetDecimal(24);
+      model.IsCapital = reader.GetBoolean(25);
+      model.DistanceEquatorKm = reader.GetInt32(26);
+      model.Population2021 = reader.IsDBNull(27)? 0: reader.GetInt64(27);
+      model.IsMatopiba = reader.GetBoolean(28);
+      model.IsNearCoast = reader.GetBoolean(29);
+      model.IsSeaFront = reader.GetBoolean(30);
     }
   }
 }
