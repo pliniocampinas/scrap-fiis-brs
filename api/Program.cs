@@ -1,25 +1,30 @@
-using Npgsql;
 using ScrapFunds.Models;
 using ScrapFunds.Queries;
+using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-// TODO: Set proper instrumentation for logging and middlewares
-
 var connectionString = builder.Configuration.GetSection("DbConnectionString").Get<string>();
+
+app.UseExceptionHandler(exceptionHandlerApp =>
+{
+  exceptionHandlerApp.Run(async context =>
+  {
+    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+    context.Response.ContentType = Text.Plain;
+
+    await context.Response.WriteAsync("An exception was thrown.");
+  });
+});
 
 app.MapGet("/", () => "ScrapFunds Api Root");
 
-// Use a middleware?
 app.MapGet("/health", async () => {
   try {
-    await using var dataSource = NpgsqlDataSource.Create(connectionString);
-    await using (var cmd = dataSource.CreateCommand("SELECT 1"))
-    await using (var reader = await cmd.ExecuteReaderAsync())
-    {
-      await reader.ReadAsync();
-    }
+    var query = new TestConnectionQuery(connectionString);
+    await query.Run();
+    Console.WriteLine("Health check healthy");
     return new HealthModel()
       {
         IsHealthy = true,
