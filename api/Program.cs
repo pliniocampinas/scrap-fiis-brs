@@ -45,4 +45,11 @@ app.MapGet("/cities/full-visualization", async () =>
   return result;
 });
 
+app.MapGet("/cities/gdp", async () => 
+{
+  var query = new GetCitiesGdpQuery(connectionString);
+  var result = await query.Run();
+  return result;
+});
+
 app.Run();
