@@ -3,9 +3,25 @@ using ScrapFunds.Queries;
 using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+  options.AddDefaultPolicy(
+    policy =>
+    {
+      policy.WithOrigins(
+        "http://localhost:8080",
+        "https://localhost:8080")
+          .AllowAnyHeader()
+          .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 var connectionString = builder.Configuration.GetSection("DbConnectionString").Get<string>();
+
+app.UseCors();
 
 app.UseExceptionHandler(exceptionHandlerApp =>
 {
