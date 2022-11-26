@@ -61,10 +61,10 @@ app.MapGet("/cities/full-visualization", async () =>
   return result;
 });
 
-app.MapGet("/cities/gdp", async () => 
+app.MapGet("/cities/gdp", async (int? year) => 
 {
   var query = new GetCitiesGdpQuery(connectionString);
-  var result = await query.Run();
+  var result = await query.Run(year);
   return result;
 });
 

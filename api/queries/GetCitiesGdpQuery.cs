@@ -12,13 +12,16 @@ namespace ScrapFunds.Queries
       _connectionString = connectionString;
     }
 
-    public async Task<List<CityGdpModel>> Run()
+    public async Task<List<CityGdpModel>> Run(int? year = null)
     {
       await using var dataSource = NpgsqlDataSource.Create(_connectionString);
 
-      Console.WriteLine("Selecting cities");
-
       var sql = "SELECT city_id, year, city_name, state_acronym, total_gdp_1000_brl, gdp_per_capita_brl FROM cities_gdp";
+      
+      if(year.HasValue && year > 0) {
+        sql+= " WHERE year = " + year.ToString();
+      }
+
       var results = new List<CityGdpModel>();
       
       await using (var cmd = dataSource.CreateCommand(sql))
