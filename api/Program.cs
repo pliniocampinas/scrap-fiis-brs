@@ -68,4 +68,11 @@ app.MapGet("/cities/gdp", async (int? year) =>
   return result;
 });
 
+app.MapGet("/cities/is-semi-arid", async () => 
+{
+  var query = new GetSemiAridCitiesQuery(connectionString);
+  var result = await query.Run();
+  return result;
+});
+
 app.Run();
