@@ -3,29 +3,32 @@ using ScrapFunds.Models;
 
 namespace ScrapFunds.Queries
 {
-  class GetSemiAridCitiesQuery
+  class CityGeographicFeaturesQuery
   {
     private string _connectionString;
 
-    public GetSemiAridCitiesQuery(string connectionString)
+    public CityGeographicFeaturesQuery(string connectionString)
     {
       _connectionString = connectionString;
     }
 
-    public async Task<List<CityIsSemiAridModel>> Run(int? year = null)
+    public async Task<List<CityGeographicFeaturesModel>> Run(int? year = null)
     {
       await using var dataSource = NpgsqlDataSource.Create(_connectionString);
 
-      var sql = "SELECT city_id, year, city_name, state_acronym, is_semi_arid FROM cities_gdp WHERE year = 2019";
+      var sql = "SELECT cg.city_id, cg.year, cg.city_name, cg.state_acronym, cg.is_semi_arid, "
+      + "cc.is_matopiba, cg.is_legal_amazon, cc.is_sea_front FROM cities_gdp cg "
+      + "LEFT JOIN cities_coordinates cc on cc.city_id = cg.city_id "
+      + "WHERE year = 2019";
       
-      var results = new List<CityIsSemiAridModel>();
+      var results = new List<CityGeographicFeaturesModel>();
       
       await using (var cmd = dataSource.CreateCommand(sql))
       await using (var reader = await cmd.ExecuteReaderAsync())
       {
         while (await reader.ReadAsync())
         {
-          var model = new CityIsSemiAridModel();
+          var model = new CityGeographicFeaturesModel();
           MapValues(model, reader);
           results.Add(model);
         }
@@ -34,7 +37,7 @@ namespace ScrapFunds.Queries
       return results;
     }
     
-    private void MapValues(CityIsSemiAridModel model, NpgsqlDataReader? reader)
+    private void MapValues(CityGeographicFeaturesModel model, NpgsqlDataReader? reader)
     {
       if(reader == null)
       {
@@ -45,6 +48,9 @@ namespace ScrapFunds.Queries
       model.CityName = reader.GetString(2);
       model.StateAcronym = reader.GetString(3);
       model.IsSemiArid = reader.GetBoolean(4);
+      model.IsMatopiba = reader.GetBoolean(5);
+      model.IsLegalAmazon = reader.GetBoolean(6);
+      model.IsSeaFront = reader.GetBoolean(7);
     }
   }
 }
