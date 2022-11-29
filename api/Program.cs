@@ -1,3 +1,4 @@
+using ScrapFunds.Helpers;
 using ScrapFunds.Models;
 using ScrapFunds.Queries;
 using static System.Net.Mime.MediaTypeNames;
@@ -73,6 +74,14 @@ app.MapGet("/cities/geo-features", async () =>
   var query = new CityGeographicFeaturesQuery(connectionString);
   var result = await query.Run();
   return result;
+});
+
+app.MapGet("/cities/features-stats/{feature}", async (string feature) => 
+{
+  var query = new GetFullCitiesVisualizationQuery(connectionString);
+  var result = await query.Run(2019);
+  var featureStats = FeatureStatsHelper.ExtractFeatureStats(result, feature);
+  return featureStats;
 });
 
 app.Run();

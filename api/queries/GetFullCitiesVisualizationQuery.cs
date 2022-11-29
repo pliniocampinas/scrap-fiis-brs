@@ -12,11 +12,12 @@ namespace ScrapFunds.Queries
       _connectionString = connectionString;
     }
 
-    public async Task<List<FullCityVisualizationModel>> Run()
+    public async Task<List<FullCityVisualizationModel>> Run(int? year = null)
     {
       await using var dataSource = NpgsqlDataSource.Create(_connectionString);
 
-      string[] fields = {
+      string[] fields = 
+      {
         "city_id", "year", "city_name", "state_acronym", "greater_region_name", "greater_region_code",
         "metropolitan_region", "is_legal_amazon", "is_semi_arid", "is_sao_paulo_region",
         "total_gdp_1000_brl", "gdp_per_capita_brl", "public_expending_value_1000_brl", 
@@ -27,9 +28,13 @@ namespace ScrapFunds.Queries
         "population2021", "is_matopiba", "is_near_coast", "is_sea_front",
       };
 
-      Console.WriteLine("Selecting " + fields.Length + " fields");
+      var sql = "SELECT " + String.Join(", ", fields) + " FROM full_cities_analysis ";
 
-      var sql = "SELECT " + String.Join(", ", fields) + " FROM full_cities_analysis";
+      if(year.HasValue && year > 0) 
+      {
+        sql+= "WHERE year = " + year.ToString();
+      }
+
       var results = new List<FullCityVisualizationModel>();
       
       await using (var cmd = dataSource.CreateCommand(sql))
