@@ -8,8 +8,8 @@ namespace ScrapFunds.Helpers
     public static FeatureStatsModel ExtractFeatureStats(List<FullCityVisualizationModel> results, string feature)
     {
       var nationalGdpPerCapitaBrlAverage = results.Select(city => city.GdpPerCapitaBrl).Average();
-      var nationalTotalGdpBrlGrowthPercentAverage = results.Select(city => city.TotalGdp1000BrlGrowthPercent).Average();
-      var nationalPopulationGrowthPercentAverage = results.Select(city => city.PopulationGrowthPercent).Average();
+      var nationalTotalGdpBrlGrowthPercentAverage = results.Select(city => city.TotalGdp1000BrlGrowthPercent).Average() * 100;
+      var nationalPopulationGrowthPercentAverage = results.Select(city => city.PopulationGrowthPercent).Average() * 100;
       var citiesWithSelectedFeature = results.Where(city => FeatureStatsHelper.FilterCityByFeature(city, feature));
       var featureGdpPerCapitaBrlAverage = citiesWithSelectedFeature.Select(city => city.GdpPerCapitaBrl).Average();
       var featureTotalGdp1000BrlGrowthPercentAverage = citiesWithSelectedFeature.Select(city => city.TotalGdp1000BrlGrowthPercent).Average() * 100;
