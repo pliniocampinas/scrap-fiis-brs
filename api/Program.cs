@@ -84,4 +84,11 @@ app.MapGet("/cities/features-stats/{feature}", async (string feature) =>
   return featureStats;
 });
 
+app.MapGet("/cities/metropolitan-regions", async () => 
+{
+  var query = new MetropolitanRegionsVisualizationQuery(connectionString);
+  var result = await query.Run();
+  return result;
+});
+
 app.Run();
