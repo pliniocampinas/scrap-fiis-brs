@@ -1,4 +1,3 @@
-using ScrapFunds.Helpers;
 using ScrapFunds.Models;
 using ScrapFunds.Queries;
 using static System.Net.Mime.MediaTypeNames;
