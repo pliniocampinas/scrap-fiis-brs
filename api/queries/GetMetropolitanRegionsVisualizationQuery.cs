@@ -3,11 +3,11 @@ using ScrapFunds.Models;
 
 namespace ScrapFunds.Queries
 {
-  class MetropolitanRegionsVisualizationQuery
+  class GetMetropolitanRegionsVisualizationQuery
   {
     private string _connectionString;
 
-    public MetropolitanRegionsVisualizationQuery(string connectionString)
+    public GetMetropolitanRegionsVisualizationQuery(string connectionString)
     {
       _connectionString = connectionString;
     }

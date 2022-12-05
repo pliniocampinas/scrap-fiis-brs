@@ -78,15 +78,14 @@ app.MapGet("/cities/geo-features", async () =>
 
 app.MapGet("/cities/features-stats/{feature}", async (string feature) => 
 {
-  var query = new GetFullCitiesVisualizationQuery(connectionString);
-  var result = await query.Run(2019);
-  var featureStats = FeatureStatsHelper.ExtractFeatureStats(result, feature);
-  return featureStats;
+  var query = new GetFeatureStatsQuery(connectionString);
+  var result = await query.Run(feature);
+  return result;
 });
 
 app.MapGet("/cities/metropolitan-regions", async () => 
 {
-  var query = new MetropolitanRegionsVisualizationQuery(connectionString);
+  var query = new GetMetropolitanRegionsVisualizationQuery(connectionString);
   var result = await query.Run();
   return result;
 });
