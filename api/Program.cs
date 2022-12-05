@@ -91,4 +91,11 @@ app.MapGet("/cities/metropolitan-regions", async () =>
   return result;
 });
 
+app.MapGet("/cities/metropolitan-regions-details", async () => 
+{
+  var query = new GetMetropolitanRegionsDetailsQuery(connectionString);
+  var result = await query.Run();
+  return result;
+});
+
 app.Run();
