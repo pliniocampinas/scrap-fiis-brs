@@ -32,8 +32,8 @@ namespace ScrapFunds.Queries
           Population = city.Sum(ct => ct.Population2021),
           TotalGdp1000Brl = city.Sum(ct => ct.TotalGdp1000Brl),
           GdpPerCapitaBrlAverage = city.Average(ct => ct.GdpPerCapitaBrl),
-          PopulationGrowthPercentAverage = city.Average(ct => ct.PopulationGrowthPercent),
-          TotalGdpBrlGrowthPercentAverage = city.Average(ct => ct.TotalGdp1000BrlGrowthPercent),
+          PopulationGrowthPercentAverage = city.Average(ct => ct.PopulationGrowthPercent) * 100,
+          TotalGdpBrlGrowthPercentAverage = city.Average(ct => ct.TotalGdp1000BrlGrowthPercent) * 100,
         });
 
 
