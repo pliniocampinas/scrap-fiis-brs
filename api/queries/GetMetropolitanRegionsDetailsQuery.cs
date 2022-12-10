@@ -20,7 +20,9 @@ namespace ScrapFunds.Queries
       var nationalTotalGdpBrlGrowthPercentAverage = results.Select(city => city.TotalGdp1000BrlGrowthPercent).Average() * 100;
       var nationalPopulationGrowthPercentAverage = results.Select(city => city.PopulationGrowthPercent).Average() * 100;
       // Group by metropolitan cities
-      var resultsGrouped = results.GroupBy(city => city.MetropolitanRegion);
+      var resultsGrouped = results
+        .Where(c => c.MetropolitanRegion.Length > 0)
+        .GroupBy(city => city.MetropolitanRegion);
       var metropolitanRegions = resultsGrouped.Select(city => new MetropolitanRegionDetails() { 
           MetropolitanRegionName = city.Key,
           // For metropolitan regions within more than one state, like the federal district, 
