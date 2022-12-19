@@ -96,4 +96,11 @@ app.MapGet("/cities/metropolitan-regions-details", async () =>
   return result;
 });
 
+app.MapGet("/funds/list", async () => 
+{
+  var query = new GetUniqueFundsQuery(connectionString);
+  var result = await query.Run();
+  return result;
+});
+
 app.Run();
