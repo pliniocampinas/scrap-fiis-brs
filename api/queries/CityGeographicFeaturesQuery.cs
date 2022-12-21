@@ -12,7 +12,7 @@ namespace ScrapFunds.Queries
       _connectionString = connectionString;
     }
 
-    public async Task<List<CityGeographicFeaturesModel>> Run(int? year = null)
+    public async Task<List<CityGeographicFeaturesModel>> Run()
     {
       await using var dataSource = NpgsqlDataSource.Create(_connectionString);
 
