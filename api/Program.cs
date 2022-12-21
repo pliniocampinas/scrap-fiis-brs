@@ -103,4 +103,11 @@ app.MapGet("/funds/list", async () =>
   return result;
 });
 
+app.MapGet("/funds/assets-per-state", async () => 
+{
+  var query = new GetAssetsPerStateQuery(connectionString);
+  var result = await query.Run();
+  return result;
+});
+
 app.Run();
