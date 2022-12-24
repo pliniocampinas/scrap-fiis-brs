@@ -12,7 +12,7 @@ namespace ScrapFunds.Queries
       _connectionString = connectionString;
     }
 
-    public async Task<List<AssetsPerStateModel>> Run()
+    public async Task<List<AssetsPerStateModel>> Run(string fundAcronym = "")
     {
       await using var dataSource = NpgsqlDataSource.Create(_connectionString);
 
@@ -20,8 +20,9 @@ namespace ScrapFunds.Queries
       // aggregate data with other source should give better results for such specific fund
       var sql =  "SELECT state, count(*) as assets_count from scrapped_assets "
       + "WHERE source = 'funds-explorer' "
-      + "GROUP by state "
-      + "ORDER by 1 ";
+      + (fundAcronym.Length > 0? " AND fund_acronym = '"+fundAcronym+"'": "")
+      + " GROUP by state "
+      + " ORDER by 1 ";
       
       var results = new List<AssetsPerStateModel>();
       
