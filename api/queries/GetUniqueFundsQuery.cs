@@ -16,7 +16,9 @@ namespace ScrapFunds.Queries
     {
       await using var dataSource = NpgsqlDataSource.Create(_connectionString);
 
-      var sql = "SELECT acronym, long_name, admin FROM scrapped_funds";
+      var sql = "SELECT acronym, long_name, admin FROM scrapped_funds "
+      + " WHERE source = 'funds-explorer' "
+      + " AND EXISTS (SELECT * FROM scrapped_assets WHERE scrapped_funds.acronym = scrapped_assets.fund_acronym AND source = 'funds-explorer')";
       
       var results = new List<UniqueFundModel>();
       
@@ -40,7 +42,7 @@ namespace ScrapFunds.Queries
       {
         return;
       }
-      
+
       model.Acronym = reader.GetString(0);
       model.LongName = reader.GetString(1);
       model.Admin = reader.GetString(2);
