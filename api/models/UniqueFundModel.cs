@@ -5,5 +5,6 @@ namespace ScrapFunds.Models
     public string Acronym { get; set; } = string.Empty;
     public string LongName { get; set; } = string.Empty;
     public string Admin { get; set; } = string.Empty;
+    public int AssetsCount { get; set; }
   }
 }
