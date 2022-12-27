@@ -16,9 +16,9 @@ namespace ScrapFunds.Queries
     {
       await using var dataSource = NpgsqlDataSource.Create(_connectionString);
 
-      var sql = " SELECT sf.acronym, sf.long_name, sf.admin, c.assets_count FROM scrapped_funds sf " 
+      var sql = " SELECT sf.acronym, sf.long_name, sf.admin, c.assets_count, c.total_square_meters FROM scrapped_funds sf " 
       + " LEFT JOIN "
-      + "   (SELECT COUNT(sa.sequential) AS assets_count, sa.fund_acronym  "
+      + "   (SELECT COUNT(sa.sequential) AS assets_count, SUM(sa.square_meters) AS total_square_meters, sa.fund_acronym  "
       + "   FROM scrapped_assets sa  "
       + "   WHERE sa.source = 'funds-explorer' "
       + "   GROUP BY sa.fund_acronym) AS c "
@@ -54,6 +54,7 @@ namespace ScrapFunds.Queries
       model.LongName = reader.GetString(1);
       model.Admin = reader.GetString(2);
       model.AssetsCount = reader.GetInt16(3);
+      model.TotalSquareMeters = reader.GetInt32(4);
     }
   }
 }

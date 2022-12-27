@@ -6,5 +6,6 @@ namespace ScrapFunds.Models
     public string LongName { get; set; } = string.Empty;
     public string Admin { get; set; } = string.Empty;
     public int AssetsCount { get; set; }
+    public int TotalSquareMeters { get; set; }
   }
 }

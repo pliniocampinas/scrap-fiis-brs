@@ -18,7 +18,7 @@ namespace ScrapFunds.Queries
 
       // TODO: Funds explorer source groups 2 major assets PERNANBUCANAS and MINEIRAO together,
       // aggregate data with other source should give better results for such specific fund
-      var sql =  "SELECT state, count(*) as assets_count from scrapped_assets "
+      var sql =  "SELECT state, count(*) as assets_count, sum(square_meters) as total_squere_meters from scrapped_assets "
       + "WHERE source = 'funds-explorer' "
       + (fundAcronym.Length > 0? " AND fund_acronym = '"+fundAcronym+"'": "")
       + " GROUP by state "
@@ -48,6 +48,7 @@ namespace ScrapFunds.Queries
       }
       model.StateAcronym = reader.GetString(0);
       model.AssetsCount = reader.GetInt16(1);
+      model.TotalSquareMeters = reader.GetInt32(2);
     }
   }
 }
