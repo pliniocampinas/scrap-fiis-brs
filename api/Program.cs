@@ -110,4 +110,14 @@ app.MapGet("/funds/assets-per-state", async (string? fund) =>
   return result;
 });
 
+app.MapGet("/assets", async (string? fund, string? state) => 
+{
+  var query = new GetAssetsQuery(connectionString);
+  var result = await query.Run(new GetAssetsQueryParams() {
+    FundAcronym = fund??"",
+    StateAcronym = state??"",
+  });
+  return result;
+});
+
 app.Run();
