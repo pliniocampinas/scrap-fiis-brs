@@ -27,6 +27,8 @@ namespace ScrapFunds.Queries
         sql+= $" AND state = '{parameters.StateAcronym.ToUpper()}'";
       }
 
+      sql += "ORDER BY square_meters DESC";
+
       var results = new List<AssetModel>();
       
       await using (var cmd = dataSource.CreateCommand(sql))
