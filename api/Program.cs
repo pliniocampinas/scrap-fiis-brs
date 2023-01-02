@@ -120,4 +120,11 @@ app.MapGet("/assets", async (string? fund, string? state) =>
   return result;
 });
 
+app.MapGet("/cities/economics-sectors", async () => 
+{
+  var query = new GetEconomicSectorsNamesQuery(connectionString);
+  var result = await query.Run();
+  return result;
+});
+
 app.Run();
