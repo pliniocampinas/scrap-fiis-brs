@@ -11,6 +11,7 @@ const loadCitiesLocation = require('./scripts/loadCitiesLocation')
 const loadCitiesPopulation = require('./scripts/loadCitiesPopulation')
 const calculateCitiesDistances = require('./scripts/calculateCitiesDistances')
 const setCitiesGeographics = require('./scripts/setCitiesGeographics')
+const setAssetsCityCode = require('./scripts/setAssetsCityCode')
 
 const options = [
   {
@@ -64,6 +65,10 @@ const options = [
   {
     text: 'Set Cities Geographics Features',
     run: () => setCitiesGeographics.run()
+  },
+  {
+    text: 'Set Assets city code',
+    run: () => setAssetsCityCode.run()
   },
 ].map((opc, index) => {
   return {

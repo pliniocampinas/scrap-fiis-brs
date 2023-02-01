@@ -20,7 +20,7 @@ module.exports = {
       console.log('Query returns ', query.rowCount, ' rows')
       return query.rows;
     } catch(err) {
-      console.log('Database error', fund)
+      console.log('Database error')
       console.log(err)
       return
     }

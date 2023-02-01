@@ -13,3 +13,6 @@ CREATE TABLE IF NOT EXISTS scrapped_assets (
 
 ALTER TABLE scrapped_assets
 ADD IF NOT EXISTS SOURCE varchar(100);
+
+ALTER TABLE scrapped_assets
+ADD IF NOT EXISTS city_id INTEGER;
