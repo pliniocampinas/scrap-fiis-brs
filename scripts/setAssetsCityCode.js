@@ -1,6 +1,7 @@
 
 const getCityCodesQuery = require('../queries/getCityCodesQuery')
-// const setAssetCityCodeCommand = require('../commands/setAssetCityCodeCommand')
+const getScrappedAssetsQuery = require('../queries/getScrappedAssetsQuery')
+const setAssetCityCodeCommand = require('../commands/setAssetCityCodeCommand')
 
 const normalizeCityName = (name) => name.normalize('NFD').replace(/\p{Diacritic}/gu, "").toLowerCase()
 
@@ -9,8 +10,6 @@ module.exports = {
     console.log('Setting assets cities codes')
     try {
 
-      // query cities with name and code
-      // -- normalize cities names
       const cities = (await getCityCodesQuery.execute()).map(city => {
         return {
           cityId: city.city_id,
@@ -19,14 +18,23 @@ module.exports = {
       })
       console.log('cities', cities[0])
 
-      // query assets: assets.seq, assets.city_name
-      // -- normalize assets cities names
-      const assets = []
+      const assets = (await getScrappedAssetsQuery.execute()).map(assset => {
+        return {
+          sequential: assset.sequential,
+          cityName: normalizeCityName(assset.city),
+        }
+      })
+      console.log('assets', assets[0])
 
-      // for each assets seqs
       for (const asset of assets) {
-        // run command(seq, city_code)
-        break
+        const city = cities.find(city => city.cityName === asset.cityName)
+        if(!city) {
+          console.warn('cityId not found, assetCityName:', asset.cityName)
+        }
+        await setAssetCityCodeCommand.execute({
+          cityId: city.cityId,
+          assetSequential: asset.sequential
+        })
       }
 
     } catch(err) {
